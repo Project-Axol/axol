@@ -1,0 +1,17 @@
+.servers {
+  height: 100vh;
+  width: 60px;
+  background-color: blue;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.srvr-bttn {
+  height: 50px;
+  width: 50px;
+  margin-top: 15px;
+  background-color: orange;
+  border-radius: 50%;
+}
