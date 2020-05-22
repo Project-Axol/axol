@@ -6,3 +6,19 @@
   top: 0;
   left: 60px;
 }
+
+.srvr-name {
+  height: 35px;
+  width: 100%;
+  background-color: purple;
+  position: absolute;
+  top: 0;
+}
+
+.chnl-usr {
+  height: 45px;
+  width: 100%;
+  background-color: pink;
+  position: absolute;
+  bottom: 0;
+}
