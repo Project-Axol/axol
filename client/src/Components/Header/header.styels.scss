@@ -10,7 +10,7 @@
     padding: 5px;
     color: $greyText;
     .header-logo {
-        width: 75px;
+        min-width: 75px;
         height: 100%;
         border-right: 1px solid black;
         img {
@@ -19,7 +19,7 @@
         }
     }
     .header-server-name {
-        width: 200px;
+        min-width: 200px;
         height: 100%;
         padding: 6px 0;
         border-right: 1px solid black;
