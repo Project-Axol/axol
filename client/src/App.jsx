@@ -46,7 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.currentUser? <p onClick={()=>auth.signOut()}>Logout</p> : <p>go ahead and login</p>}
+          {this.state.currentUser? <p onClick={()=>auth.signOut().then(()=>this.props.history.push('/'))}>Logout</p> : <p>go ahead and login</p>}
         </div>
         {router}
         {/* <ServerNav />
