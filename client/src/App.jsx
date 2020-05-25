@@ -32,9 +32,7 @@ class App extends Component {
           this.setState({
               currentUser: userAuth
           })
-          console.log('hello')
           this.props.history.push('/dashboard')
-          console.log(userAuth)
           
         }else{
           this.setState({currentUser: userAuth})

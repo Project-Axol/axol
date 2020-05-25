@@ -14,10 +14,15 @@ const firebaseConfig = {
     measurementId: "G-Q9Y1K85Z2N"
 };
 
-export const createUserProfile = async(userAuth, additionalData) => {
+export const createUserProfile = async(userAuth, additionalData = null) => {
     if (!userAuth) return
+    console.log('adddiiitttion: ', additionalData)
     let { uid, displayName, email, photoURL } = userAuth
-    // if (additionalData !== null) displayName = additionalData
+    if (displayName === null && additionalData !== null) {
+        displayName = additionalData
+    } else if (displayName === null) {
+        return
+    }
     axios.post('/api/users', { uid, displayName, email, photoURL }).then(res => {
         return res.data
     }).catch(() => alert('Unable to verify/add user'))

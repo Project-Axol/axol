@@ -30,6 +30,18 @@ class Auth extends Component{
 
     handleSignInSubmit = async (e) => {
         e.preventDefault();
+        const {email, password} = this.state
+        try{
+            const {user} = await auth.signInWithEmailAndPassword(email, password)
+            this.setState({
+                userName:'',
+                email: '',
+                password: '',
+                confirmPassword:''
+            })
+        }catch(err){
+            alert(err)
+        }
     }
 
     handleSignUpSubmit = async (e) => {
@@ -58,12 +70,14 @@ class Auth extends Component{
             <div className='auth-container'>
                 {!this.state.signUpToggle ? 
                     <div className='auth-sign-in'>
-                        <form>
-                            <input name='userName' type='text' onChange={e=>this.handleOnchange(e)}/>
+                        <form onSubmit={this.handleSignUpSubmit}>
+                            <input name='email' type='text' onChange={e=>this.handleOnchange(e)}/>
                             <input name='password' type='password' onChange={e=>this.handleOnchange(e)}/>
                         </form>
                         <p>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></p>
-                        
+                        <Button variant="outlined" color="primary" onClick={this.handleSignInSubmit}>
+                            SignIn
+                        </Button>
                         <Button variant="outlined" color="primary" onClick={signInWithGoogle}>
                             SignIn With GOOGLE
                         </Button>
