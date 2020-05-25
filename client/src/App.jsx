@@ -3,6 +3,9 @@ import './App.css';
 import router from './router';
 import {withRouter} from 'react-router-dom'
 import {auth, createUserProfile} from './firebase/firebase.utils'
+import {connect} from 'react-redux'
+import {loginUser} from './ducks/userReducer'
+import Header from './Components/Header/Header.component'
 
 class App extends Component {
   constructor(props){
@@ -32,6 +35,7 @@ class App extends Component {
           this.setState({
               currentUser: userAuth
           })
+          this.props.loginUser(userRef)
           this.props.history.push('/dashboard')
           
         }else{
@@ -45,15 +49,20 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <div>
-          {this.state.currentUser? <p onClick={()=>auth.signOut().then(()=>this.props.history.push('/'))}>Logout</p> : <p>go ahead and login</p>}
+        <div className='header'>
+          <Header/>
         </div>
-        {router}
-        {/* <ServerNav />
-        <ChannelNav /> */}
+        <div className='main-content'>
+          {router}
+        <div>
+          {this.props.userReducer.isLoggedIn? <p onClick={()=>auth.signOut().then(()=>this.props.history.push('/'))}>Logout</p> : <p>go ahead and login</p>}
+        </div>
+        </div>
       </div>
     );
   }
 }
-
-export default withRouter(App);
+const mapStateToProps = state => {
+  return {userReducer:state.userReducer}
+}
+export default connect(mapStateToProps, {loginUser})(withRouter(App));

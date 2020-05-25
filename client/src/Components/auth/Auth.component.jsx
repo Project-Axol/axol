@@ -53,7 +53,10 @@ class Auth extends Component{
         }
         try{
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            await createUserProfile(user, userName)
+            await user.updateProfile({
+                displayName:userName
+            })
+            await createUserProfile(user)
             this.setState({
                 userName:'',
                 email: '',
@@ -71,7 +74,9 @@ class Auth extends Component{
                 {!this.state.signUpToggle ? 
                     <div className='auth-sign-in'>
                         <form onSubmit={this.handleSignUpSubmit}>
+                            Email
                             <input name='email' type='text' onChange={e=>this.handleOnchange(e)}/>
+                            password
                             <input name='password' type='password' onChange={e=>this.handleOnchange(e)}/>
                         </form>
                         <p>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></p>

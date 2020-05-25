@@ -1,0 +1,55 @@
+@import '../../utils/styles.util.scss';
+.header-container {
+    width: 100vw;
+    height: 8vh;
+    background-color: $greyLighter;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    color: $greyText;
+    .header-logo {
+        width: 75px;
+        height: 100%;
+        border-right: 1px solid black;
+        img {
+            width: auto;
+            height: 100%;
+        }
+    }
+    .header-server-name {
+        width: 200px;
+        height: 100%;
+        padding: 6px 0;
+        border-right: 1px solid black;
+        h2 {
+            margin: 0 3px;
+            align-self: center;
+        }
+    }
+    .header-server-channel {
+        width: 60%;
+        min-width: 45%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        img {
+            height: 100%;
+            width: auto;
+        }
+    }
+    .header-sign-out {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-right: 5px;
+        span {
+            margin-left: 15px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
