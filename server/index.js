@@ -4,6 +4,9 @@ const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
 
+
+const usersCtrl = require('./controllers/usersController')
+
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
 const app = express()
@@ -21,6 +24,9 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
 }
+
+app.post('/api/users', usersCtrl.validateAdduser)
+
 massive({
     connectionString: CONNECTION_STRING,
     ssl: {

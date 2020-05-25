@@ -52,6 +52,7 @@ CREATE TABLE "users" (
   "user_name" varchar(50),
   "created_at" timestamp,
   "user_uuid" varchar(200),
+  "email" varchar(200),
   "profile_pic" text
 );
 
