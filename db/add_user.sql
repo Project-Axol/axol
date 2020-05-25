@@ -1,4 +1,4 @@
-insert into gusers (
+insert into users (
   user_name,
   created_at,
   user_uuid,

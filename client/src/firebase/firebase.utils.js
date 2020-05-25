@@ -17,7 +17,7 @@ const firebaseConfig = {
 export const createUserProfile = async(userAuth, additionalData) => {
     if (!userAuth) return
     let { uid, displayName, email, photoURL } = userAuth
-    if (additionalData !== null) displayName = additionalData
+    // if (additionalData !== null) displayName = additionalData
     axios.post('/api/users', { uid, displayName, email, photoURL }).then(res => {
         return res.data
     }).catch(() => alert('Unable to verify/add user'))

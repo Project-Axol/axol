@@ -1,1 +1,1 @@
-select * from gusers where user_uuid = $1;
+select * from users where user_uuid = $1;
