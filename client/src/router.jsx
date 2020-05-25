@@ -1,10 +1,12 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
+import LandingPage from './pages/HomePage/LandingPage'
+import DashboardPage from './pages/DashBoardPage/DashboardPage'
 
-const router = ()=> {
+export default(
     <Switch>
-        <Route exact path='/'>Home page</Route>
+        <Route exact path='/' component={LandingPage}/>
+        <Route exact path='/dashboard' component={DashboardPage}/>
     </Switch>
-}
+) 
 
-export default router

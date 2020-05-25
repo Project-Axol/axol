@@ -1,0 +1,1 @@
+select * from gusers where user_uuid = $1;
