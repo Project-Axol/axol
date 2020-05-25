@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import axios from 'axios'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCaHgT6GgZ4STJQ3m98l7dLTb-mOgAfIIM",
     authDomain: "axol-6e5be.firebaseapp.com",
