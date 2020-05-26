@@ -19,7 +19,7 @@ function ServerNav(props){
     })
     console.log('hit')
   }, [])
-  
+  console.log(servers)
   const serverDisplay = servers.map(server => { 
     return (
       <section

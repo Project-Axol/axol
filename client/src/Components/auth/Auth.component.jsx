@@ -1,6 +1,13 @@
 import React, { useState, Component } from 'react'
 import {signInWithGoogle, auth, createUserProfile} from '../../firebase/firebase.utils'
-import { Button } from '@material-ui/core';
+import { 
+    Button,
+    TextField,
+    Grid,
+    Paper,
+    Typography
+} from '@material-ui/core'
+import { GroupAdd, Person, ArrowBack } from '@material-ui/core'
 
 
 import './auth.styles.scss'
@@ -70,43 +77,120 @@ class Auth extends Component{
 
     render(){
         return (
-            <div className='auth-container'>
+            <div className='auth-wrapper'>
+                <Paper className='container-prompt'>
                 {!this.state.signUpToggle ? 
-                    <div className='auth-sign-in'>
-                        <form onSubmit={this.handleSignUpSubmit}>
-                            Email
-                            <input name='email' type='text' onChange={e=>this.handleOnchange(e)}/>
-                            password
-                            <input name='password' type='password' onChange={e=>this.handleOnchange(e)}/>
-                        </form>
-                        <p>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></p>
-                        <Button variant="outlined" color="primary" onClick={this.handleSignInSubmit}>
-                            SignIn
-                        </Button>
-                        <Button variant="outlined" color="primary" onClick={signInWithGoogle}>
-                            SignIn With GOOGLE
-                        </Button>
-                    </div>
+                    <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-typography'>
+                            <Typography variant='h5' color='primary' align='center'>
+                                Please sign in
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField
+                                id='userName'
+                                label='Email'
+                                name='email' 
+                                margin='dense'
+                                type='text' 
+                                variant='outlined'
+                                onChange={e=>this.handleOnchange(e)}/>
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField
+                            id='password'
+                            label='Password'
+                            margin='dense'
+                            autoComplete='off'
+                            variant='outlined'
+                            name='password' 
+                            type='password' 
+                            onChange={e=>this.handleOnchange(e)}/>
+                        </Grid>
+                        <Grid item xs={12} className='grid-signup-link'>
+                            <Typography color='primary' align='center'>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></Typography>
+                        </Grid>
+                        <Grid item xs={12} className='grid-submit'>
+                            <Button 
+                            type='submit'
+                            className='modal-login-button'
+                            variant="contained" 
+                            color="primary" 
+                            onClick={this.handleSignInSubmit}>
+                                SignIn
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12} className='grid-button'>
+                            <Button 
+                            className='modal-login-button'
+                            variant="contained" 
+                            color="primary" 
+                            onClick={signInWithGoogle}>
+                                Sign In With GOOGLE
+                            </Button>
+                        </Grid>
+                    </Grid>
                     :
-                    <div className='auth-sign-up'>
-                        <form action="post" onSubmit={this.handleSignUpSubmit}>
-                            username
-                            <input name='userName' type='text' onChange={e=>this.handleOnchange(e)}/>
-                            email
-                            <input name='email' type='email' onChange={e=>this.handleOnchange(e)}/>
-                            password
-                            <input name='password' type='password' onChange={e=>this.handleOnchange(e)}/>
-                            confirmPassword
-                            <input name='confirmPassword' type='password' onChange={e=>this.handleOnchange(e)}/>
-                        </form>
-                        <p>Already have an account? <strong onClick={this.handleSignUpToggle}>SIGN IN</strong></p>
-                        <Button type='submit' variant="outlined" color='primary' onClick={this.handleSignUpSubmit}> sign Up</Button>
-                        <Button variant="outlined" color="primary" onClick={signInWithGoogle}>
-                            SignUp With GOOGLE
-                        </Button>
-                    </div>
+                    <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-typography'>
+                            <Typography variant='h5' color='primary' align='center'>
+                                Please create an account
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField 
+                            name='userName' 
+                            label='Username'
+                            margin='dense'
+                            variant='outlined'
+                            type='text' 
+                            onChange={e=>this.handleOnchange(e)}/>
+
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField
+                            name='email'
+                            type='email'
+                            label='Email'
+                            margin='dense'
+                            variant='outlined'
+                            onChange={e => this.handleOnchange(e)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField 
+                            name='password'
+                            type='password'
+                            label='Password'
+                            margin='dense'
+                            variant='outlined'
+                            onChange={e => this.handleOnchange(e)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} className='grid-textfield'>
+                            <TextField 
+                            name='confirmPassword'
+                            type='password'
+                            label='Confirm Password'
+                            margin='dense'
+                            variant='outlined'
+                            onChange={e => this.handleOnchange(e)}
+                            />
+                        </Grid>
+                        <Grid item xs={12} className='grid-toggle'>
+                            <Typography color='primary' align='center'>Already have an account? <strong onClick={this.handleSignUpToggle}>SIGN IN</strong></Typography>
+                        </Grid>
+                        <Grid item xs={12} className='grid-submit'>
+                            <Button type='submit' variant="contained" color='primary' onClick={this.handleSignUpSubmit}> Sign Up</Button>
+                        </Grid>
+                        <Grid item xs={12} className='grid-signup-with-google'>
+                            <Button variant="contained" color="primary" onClick={signInWithGoogle}>
+                                Sign Up With GOOGLE
+                            </Button>
+                        </Grid>
+                    </Grid>
                 }
-    
+            </Paper>
             </div>
         )
     }
