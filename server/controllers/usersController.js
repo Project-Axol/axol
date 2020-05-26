@@ -13,9 +13,8 @@ module.exports = {
         res.status(200).send(addUser)
     },
     getUsers: async(req, res) => {
-        console.log("Getting users.........")
         const db = req.app.get('db')
-        console.log(db)
+
         res.sendStatus(300)
     }
 }
