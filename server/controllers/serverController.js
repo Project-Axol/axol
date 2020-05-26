@@ -23,9 +23,6 @@ module.exports = {
     const {userId} = req.params
     
     const servers = await db.server.get_servers([userId])
-
-        const servers = await db.server.get_servers([userId])
-        console.log('servers for user 21: ', servers)
         res.status(200).send(servers)
-    }
+  }
 }
