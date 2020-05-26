@@ -36,7 +36,7 @@ const Header = (props) => {
                     </div>
                     <div className='header-sign-out' >
                         <div className='header-search-friends'>
-                            <input type="text"/>
+                            <input type="text" placeholder='Search Users'/>
                         </div>
                         <span onClick={logout}>LogOut</span>
                     </div>
@@ -44,7 +44,7 @@ const Header = (props) => {
                 :
                 <React.Fragment>
                     <div className='header-server-name'>
-                        <input type='text'/>
+                        <input type='text' placeholder='Search Conversations'/>
                     </div>
                     <div className='header-server-channel'>
                         <h3># - Da Boiz</h3>
