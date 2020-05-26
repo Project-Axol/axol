@@ -3,6 +3,8 @@ import './App.css';
 import router from './router';
 import {withRouter} from 'react-router-dom'
 import {auth, createUserProfile} from './firebase/firebase.utils'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 
 class App extends Component {
   constructor(props){
@@ -46,16 +48,50 @@ class App extends Component {
   }
   render(){
     return (
-      <div className="App">
-        <div>
-          {this.state.currentUser? <p onClick={()=>auth.signOut()}>Logout</p> : <p>go ahead and login</p>}
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <div>
+            {this.state.currentUser? <p onClick={()=>auth.signOut()}>Logout</p> : <p>Please Login to Continue</p>}
+          </div>
+          {router}
+          {/* <ServerNav />
+          <ChannelNav /> */}
         </div>
-        {router}
-        {/* <ServerNav />
-        <ChannelNav /> */}
-      </div>
+      </ThemeProvider>
     );
   }
 }
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiToolTip: {
+      tooltip: {
+        fontSize: '14px',
+        backgroundColor: 'black'
+      }
+    },
+    MuiSnackbarContent: {
+      root: {
+        backgroundColor: '#202225',
+        color: 'white'
+      }
+    },
+    MuiAppBar: {
+      colorPrimary: {
+        backgroundColor: '#36393E',
+        position: "absolute"
+      }
+    }
+  },
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#7289da'
+    },
+    secondary: {
+      main: '#3ca374'
+    }
+  }
+})
 
 export default withRouter(App);

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.auth-wrapper {
+  height: calc(100vh);
+  background: #202225;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-textfield {
+  text-align: center;
+}
