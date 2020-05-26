@@ -1,5 +1,6 @@
 module.exports = {
     newServer: async(req, res) => {
+        console.log("new server--------------")
         const db = req.app.get('db')
             // const {userId} = req.session.user
         const userId = 21
@@ -22,6 +23,7 @@ module.exports = {
     getServers: async(req, res) => {
         console.log('im getting the servers.....**********###########')
         const db = req.app.get('db')
+        console.log('db content: ', db)
         const userId = 21
 
         const servers = await db.server.get_servers([userId])
