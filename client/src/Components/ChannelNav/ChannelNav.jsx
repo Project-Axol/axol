@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import './ChannelNav.css'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 function ChannelNav(props){
   let {server_id, server_name} = props.serverReducer.server
@@ -23,7 +24,9 @@ function ChannelNav(props){
 
   const categoryDisplay = categories.map(category => {
     return (
+      <Link to={`/dashboard/${category.category_id}`}>
       <section className='categories'>{category.category_name}</section>
+      </Link>
     )
   })
 

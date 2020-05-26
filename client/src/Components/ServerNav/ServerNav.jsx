@@ -10,7 +10,7 @@ function ServerNav(props){
   const {user} = props.userReducer
 
   useEffect(() => {
-    axios.get(`/api/servers/${user.user_id}`)
+    axios.get(`/api/servers/${21}`)
     .then(res => {
       setServers(res.data)
     })

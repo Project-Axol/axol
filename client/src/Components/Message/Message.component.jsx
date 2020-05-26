@@ -7,7 +7,9 @@ const Message = (props) =>{
     return(
         <section key={props.post.key} className='message-container'>
             <div className='message-user-img'>
-                <img src={props.post.profilePic} alt="profile"/>
+                <div className='user-img'>
+                    <img src={props.post.profilePic} alt="profile"/>
+                </div>
             </div>
             <div className='message-message-content'>
                 <div className='message-message-info'>
