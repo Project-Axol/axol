@@ -28,6 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/api/users', usersCtrl.validateAdduser)
+app.get('/api/users', usersCtrl.getUsers)
 
 app.get('/api/servers', serverCtrl.getServers)
 app.post('/api/servers', serverCtrl.newServer)
