@@ -7,9 +7,10 @@ import { selectServer } from '../../ducks/serverReducer'
 
 function ServerNav(props){
   const [servers, setServers] = useState([])
+  const {user} = props.userReducer
 
   useEffect(() => {
-    axios.get('/api/servers')
+    axios.get(`/api/servers/${user.user_id}`)
     .then(res => {
       setServers(res.data)
     })

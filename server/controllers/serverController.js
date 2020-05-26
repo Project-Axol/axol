@@ -1,8 +1,7 @@
 module.exports = {
   newServer: async(req, res) => {
     const db = req.app.get('db')
-    // const {userId} = req.session.user
-    const userId = 21
+    const {userId} = req.params
     const {serverName, serverImg, private, password} = req.body
 
     const [existing] = await db.server.check_server([serverName])
@@ -21,7 +20,7 @@ module.exports = {
 
   getServers: async(req, res) => {
     const db = req.app.get('db')
-    const userId = 21
+    const {userId} = req.params
     
     const servers = await db.server.get_servers([userId])
 

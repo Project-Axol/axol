@@ -29,8 +29,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.post('/api/users', usersCtrl.validateAdduser)
 
-app.post('/api/servers', serverCtrl.newServer)
-app.get('/api/servers', serverCtrl.getServers)
+app.post('/api/servers/:userId', serverCtrl.newServer)
+app.get('/api/servers/:userId', serverCtrl.getServers)
 
 app.post('/api/categories/:serverId', categoryCtrl.newCategory)
 app.get('/api/categories/:serverId', categoryCtrl.getCategories)
