@@ -20,6 +20,7 @@ module.exports = {
     },
 
     getServers: async(req, res) => {
+        console.log('im getting the servers.....**********###########')
         const db = req.app.get('db')
         const userId = 21
 
