@@ -6,6 +6,8 @@ const path = require('path')
 
 
 const usersCtrl = require('./controllers/usersController')
+const serverCtrl = require('./controllers/serverController')
+const categoryCtrl = require('./controllers/categoryController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -26,6 +28,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/api/users', usersCtrl.validateAdduser)
+
+app.post('/api/servers', serverCtrl.newServer)
+app.get('/api/servers', serverCtrl.getServers)
+
+app.post('/api/categories/:serverId', categoryCtrl.newCategory)
+app.get('/api/categories/:serverId', categoryCtrl.getCategories)
 
 massive({
     connectionString: CONNECTION_STRING,
