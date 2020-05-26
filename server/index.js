@@ -20,12 +20,6 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(`${__dirname}/../client/build`));
-    app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-    });
-}
 
 app.post('/api/users', usersCtrl.validateAdduser)
 app.get('/api/userss', usersCtrl.getUsers)
@@ -35,6 +29,13 @@ app.get('/api/servers/:userId', serverCtrl.getServers)
 
 app.post('/api/categories/:serverId', categoryCtrl.newCategory)
 app.get('/api/categories/:serverId', categoryCtrl.getCategories)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(`${__dirname}/../client/build`));
+    app.get('/*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    });
+}
 
 massive({
     connectionString: CONNECTION_STRING,
