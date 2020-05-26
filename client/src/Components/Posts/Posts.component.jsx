@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
+import Message from '../Message/Message.component'
 
 import './post.styles.scss'
 
@@ -8,14 +9,20 @@ const Posts = (props) => {
     const {channelId} = useParams()
     useEffect(()=>{
         if(channelId){
+            setPosts([{
+                profilePic: 'https://images.unsplash.com/photo-1499946981954-e7f4b234d7fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+            }])
             //axios request to get posts for the channel
         }
     },[])
-
+    const channelPosts = posts.map((post, i) =>{
+        return <Message post={post} key={i}/>
+    })
     return (
         <div className='post-container'>
             {posts.length?
                 <div>
+                    {channelPosts}
                     <h1>Yaaayyy there are some posts in this channel</h1>
                 </div>:
                 <div className='post-no-posts'>
