@@ -95,7 +95,6 @@ class Auth extends Component{
                                 type='text' 
                                 variant='outlined'
                                 onChange={e=>this.handleOnchange(e)}/>
-
                         </Grid>
                         <Grid item xs={12} className='grid-textfield'>
                             <TextField
@@ -110,6 +109,16 @@ class Auth extends Component{
                         </Grid>
                         <Grid item xs={12} className='grid-signup-link'>
                             <Typography color='primary' align='center'>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></Typography>
+                        </Grid>
+                        <Grid item xs={12} className='grid-submit'>
+                            <Button 
+                            type='submit'
+                            className='modal-login-button'
+                            variant="contained" 
+                            color="primary" 
+                            onClick={this.handleSignInSubmit}>
+                                SignIn
+                            </Button>
                         </Grid>
                         <Grid item xs={12} className='grid-button'>
                             <Button 
@@ -129,8 +138,6 @@ class Auth extends Component{
                             </Typography>
                         </Grid>
                         <Grid item xs={12} className='grid-textfield'>
-                        {/* <form action="post" onSubmit={this.handleSignUpSubmit}> */}
-                            {/* Username */}
                             <TextField 
                             name='userName' 
                             label='Username'
@@ -181,12 +188,6 @@ class Auth extends Component{
                                 Sign Up With GOOGLE
                             </Button>
                         </Grid>
-                                                      {/* Email
-                                <input name='email' type='email' onChange={e=>this.handleOnchange(e)}/>
-                                Password
-                                <input name='password' type='password' onChange={e=>this.handleOnchange(e)}/>
-                                Confirm Password
-                                <input name='confirmPassword' type='password' onChange={e=>this.handleOnchange(e)}/> */}
                     </Grid>
                 }
             </Paper>
