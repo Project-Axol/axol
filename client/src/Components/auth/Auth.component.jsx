@@ -37,6 +37,18 @@ class Auth extends Component{
 
     handleSignInSubmit = async (e) => {
         e.preventDefault();
+        const {email, password} = this.state
+        try{
+            const {user} = await auth.signInWithEmailAndPassword(email, password)
+            this.setState({
+                userName:'',
+                email: '',
+                password: '',
+                confirmPassword:''
+            })
+        }catch(err){
+            alert(err)
+        }
     }
 
     handleSignUpSubmit = async (e) => {
@@ -48,7 +60,10 @@ class Auth extends Component{
         }
         try{
             const {user} = await auth.createUserWithEmailAndPassword(email, password)
-            await createUserProfile(user, userName)
+            await user.updateProfile({
+                displayName:userName
+            })
+            await createUserProfile(user)
             this.setState({
                 userName:'',
                 email: '',

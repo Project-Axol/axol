@@ -50,7 +50,7 @@ CREATE TABLE "direct_messages_users" (
 CREATE TABLE "users" (
   "user_id" SERIAL PRIMARY KEY,
   "user_name" varchar(50),
-  "created_at" timestamp,
+  "created_at" varchar(50),
   "user_uuid" varchar(200),
   "email" varchar(200),
   "profile_pic" text

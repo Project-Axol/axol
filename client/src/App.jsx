@@ -5,6 +5,9 @@ import {withRouter} from 'react-router-dom'
 import {auth, createUserProfile} from './firebase/firebase.utils'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
+import {connect} from 'react-redux'
+import {loginUser} from './ducks/userReducer'
+import Header from './Components/Header/Header.component'
 
 class App extends Component {
   constructor(props){
@@ -34,9 +37,8 @@ class App extends Component {
           this.setState({
               currentUser: userAuth
           })
-          console.log('hello')
+          this.props.loginUser(userRef)
           this.props.history.push('/dashboard')
-          console.log(userAuth)
           
         }else{
           this.setState({currentUser: userAuth})
@@ -50,12 +52,15 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="App">
-          <div>
-            {this.state.currentUser? <p onClick={()=>auth.signOut()}>Logout</p> : <p>Please Login to Continue</p>}
+          <div className='header'>
+            <Header />
           </div>
-          {router}
-          {/* <ServerNav />
-          <ChannelNav /> */}
+          <div className='main-content'>
+            {router}
+            <div>
+            {this.props.userReducer.isLoggedIn? <p onClick={()=>auth.signOut().then(()=>this.props.history.push('/'))}>Logout</p> : <p>Please log in to continue</p>}
+            </div>
+          </div>
         </div>
       </ThemeProvider>
     );
@@ -94,4 +99,7 @@ const theme = createMuiTheme({
   }
 })
 
-export default withRouter(App);
+const mapStateToProps = state => {
+  return {userReducer:state.userReducer}
+}
+export default connect(mapStateToProps, {loginUser})(withRouter(App));
