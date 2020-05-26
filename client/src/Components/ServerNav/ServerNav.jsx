@@ -17,9 +17,7 @@ function ServerNav(props){
     .catch(err => {
       console.log(err)
     })
-    console.log('hit')
   }, [])
-  console.log(servers)
   const serverDisplay = servers.map(server => { 
     return (
       <section
@@ -27,7 +25,6 @@ function ServerNav(props){
         className='srvr-bttn'
         onClick={() => {
           props.selectServer(server)
-          // console.log(server)
         }}
       ></section>
     )

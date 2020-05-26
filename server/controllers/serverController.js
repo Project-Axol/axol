@@ -1,11 +1,10 @@
 module.exports = {
-  newServer: async(req, res) => {
-    const db = req.app.get('db')
-    const {userId} = req.params
-    const {serverName, serverImg, private, password} = req.body
+    newServer: async(req, res) => {
+        const db = req.app.get('db')
+        const { userId } = req.params
+        const { serverName, serverImg, private, password } = req.body
 
         const [existing] = await db.server.check_server([serverName])
-        console.log(existing)
 
         if (existing) {
             return res.status(400).send('Server name taken')
@@ -18,11 +17,10 @@ module.exports = {
         res.status(200).send(server)
     },
 
-  getServers: async(req, res) => {
-    const db = req.app.get('db')
-    const {userId} = req.params
-    
-    const servers = await db.server.get_servers([userId])
+    getServers: async(req, res) => {
+        const db = req.app.get('db')
+        const { userId } = req.params
+        const servers = await db.server.get_servers([userId])
         res.status(200).send(servers)
   }
 }
