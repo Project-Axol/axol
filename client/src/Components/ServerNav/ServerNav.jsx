@@ -1,13 +1,34 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 import './ServerNav.css'
+import { selectServer } from '../../ducks/serverReducer'
 
-function ServerNav(){
-  const servers = [1, 2]
+function ServerNav(props){
+  const [servers, setServers] = useState([])
+
+  useEffect(() => {
+    axios.get('/api/servers')
+    .then(res => {
+      setServers(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    console.log('hit')
+  }, [])
   
-  let serverDisplay = servers.map(() => { 
+  const serverDisplay = servers.map(server => { 
     return (
-      <div className='srvr-bttn'></div>
+      <section
+        key={server.server_id}
+        className='srvr-bttn'
+        onClick={() => {
+          props.selectServer(server)
+          // console.log(server)
+        }}
+      ></section>
     )
   })
 
@@ -23,4 +44,6 @@ function ServerNav(){
   )
 }
 
-export default ServerNav
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps, {selectServer})(ServerNav)
