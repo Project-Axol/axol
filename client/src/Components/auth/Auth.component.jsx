@@ -4,7 +4,7 @@ import {
     Button,
     TextField,
     Grid,
-    Card,
+    Paper,
     Typography
 } from '@material-ui/core'
 import { GroupAdd, Person, ArrowBack } from '@material-ui/core'
@@ -63,8 +63,14 @@ class Auth extends Component{
     render(){
         return (
             <div className='auth-wrapper'>
+                <Paper className='container-prompt'>
                 {!this.state.signUpToggle ? 
                     <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-typography'>
+                            <Typography variant='h5' color='primary' align='center'>
+                                Please sign in
+                            </Typography>
+                        </Grid>
                         <Grid item xs={12} className='grid-textfield'>
                             <TextField
                                 id='userName'
@@ -102,6 +108,11 @@ class Auth extends Component{
                     </Grid>
                     :
                     <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-typography'>
+                            <Typography variant='h5' color='primary' align='center'>
+                                Please create an account
+                            </Typography>
+                        </Grid>
                         <Grid item xs={12} className='grid-textfield'>
                         {/* <form action="post" onSubmit={this.handleSignUpSubmit}> */}
                             {/* Username */}
@@ -163,7 +174,7 @@ class Auth extends Component{
                                 <input name='confirmPassword' type='password' onChange={e=>this.handleOnchange(e)}/> */}
                     </Grid>
                 }
-    
+            </Paper>
             </div>
         )
     }
