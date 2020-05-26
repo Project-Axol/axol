@@ -7,7 +7,6 @@ import {
     Paper,
     Typography
 } from '@material-ui/core'
-import { GroupAdd, Person, ArrowBack } from '@material-ui/core'
 
 
 import './auth.styles.scss'
