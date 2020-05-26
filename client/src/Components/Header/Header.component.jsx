@@ -25,7 +25,7 @@ const Header = (props) => {
             </div>
             {
                 props.userReducer.isLoggedIn?
-                location.pathname.includes('dashboard') ?
+                !location.pathname.includes('messages') ?
                 <React.Fragment>
                     <div className='header-server-name'>
                         <h2>This is my server</h2>
@@ -43,8 +43,18 @@ const Header = (props) => {
                 </React.Fragment> 
                 :
                 <React.Fragment>
-                    <div className='header-friend-search'>
-                        <input type="text"/>
+                    <div className='header-server-name'>
+                        <input type='text'/>
+                    </div>
+                    <div className='header-server-channel'>
+                        <h3># - Da Boiz</h3>
+                        <img src={addPeople} alt="add users"/>
+                    </div>
+                    <div className='header-sign-out' >
+                        <div className='header-search-friends'>
+                            <input type="text"/>
+                        </div>
+                        <span onClick={logout}>LogOut</span>
                     </div>
                 </React.Fragment>
                 :

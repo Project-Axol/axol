@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './ServerNav.css'
 
 function ServerNav(){
@@ -12,7 +13,9 @@ function ServerNav(){
 
   return (
     <section className='servers'>
-      <div className='srvr-bttn'>Home</div>
+    <Link to='/dashboard/messages'>
+        <div className='srvr-bttn'>Home</div>
+    </Link>
       {serverDisplay}
       <div className='srvr-bttn'>New</div>
       <div className='srvr-bttn'>search</div>
