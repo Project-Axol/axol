@@ -11,7 +11,6 @@ import DirectMessages from '../../Components/DirectMessages/DirectMessages.compo
 
 const DashboardPage = (props) =>{
     let location = useLocation()
-    console.log(location, " location bitches")
     return(
         <div className='dashboard-container'>
             <ServerNav />

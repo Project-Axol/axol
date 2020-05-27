@@ -11,5 +11,10 @@ module.exports = {
         const [addUser] = await db.add_user([displayName, date, uid, email, photoURL])
         if (!addUser) return res.sendStatus(500)
         res.status(200).send(addUser)
+    },
+    getUsers: async(req, res) => {
+        const db = req.app.get('db')
+
+        res.sendStatus(300)
     }
 }

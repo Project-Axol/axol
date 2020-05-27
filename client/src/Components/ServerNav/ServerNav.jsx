@@ -7,18 +7,17 @@ import { selectServer } from '../../ducks/serverReducer'
 
 function ServerNav(props){
   const [servers, setServers] = useState([])
+  const {user} = props.userReducer
 
   useEffect(() => {
-    axios.get('/api/servers')
+    axios.get(`/api/servers/${21}`)
     .then(res => {
       setServers(res.data)
     })
     .catch(err => {
       console.log(err)
     })
-    console.log('hit')
   }, [])
-  
   const serverDisplay = servers.map(server => { 
     return (
       <section
@@ -26,7 +25,6 @@ function ServerNav(props){
         className='srvr-bttn'
         onClick={() => {
           props.selectServer(server)
-          // console.log(server)
         }}
       ></section>
     )

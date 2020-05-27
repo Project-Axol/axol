@@ -91,8 +91,8 @@ class Auth extends Component{
                         <Grid item xs={12} className='grid-textfield'>
                             <TextField
                                 id='userName'
-                                label='Username'
-                                name='userName' 
+                                label='Email'
+                                name='email' 
                                 margin='dense'
                                 type='text' 
                                 variant='outlined'
