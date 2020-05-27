@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import './ChannelNav.css'
+import './ChannelNav.scss'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 function ChannelNav(props){
