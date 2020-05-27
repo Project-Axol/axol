@@ -12,9 +12,28 @@
 }
 
 .srvr-bttn {
+    height: 55px;
+    width: 55px;
+    margin-top: 15px;
+    background-color: $greyLight;
+    border-radius: 30%;
+}
+.server-icon-btn {
+    width: 100%;
+    height: 100%;
+}
+.find-btn-img {
+    height: 30px;
+    width: 30px;
+}
+.server-nav-find-btn {
+    padding: 10px 0;
+    margin-top: 15px;
+    background-color: $greyLight;
     height: 50px;
     width: 50px;
-    margin-top: 15px;
-    background-color: $primaryColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
 }
