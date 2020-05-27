@@ -16,16 +16,10 @@
         align-items: center;
     }
     .dashboard-message-input {
-        height: 90px;
+        height: 100px;
         width: 100%;
         padding: 15px;
-        input {
-            width: 100%;
-            height: 75%;
-            border-radius: 8px;
-            font-size: 1rem;
-            padding-left: 8px;
-            background-color: $greyLightest;
-        }
+        display: flex;
+        align-items: flex-end;
     }
 }

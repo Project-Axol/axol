@@ -119,7 +119,7 @@ class Auth extends Component{
                             variant="contained" 
                             color="primary" 
                             onClick={this.handleSignInSubmit}>
-                                SignIn
+                                Sign In
                             </Button>
                         </Grid>
                         <Grid item xs={12} className='grid-button'>
