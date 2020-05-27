@@ -18,6 +18,7 @@ function ServerNav(props){
       console.log(err)
     })
   }, [])
+
   const serverDisplay = servers.map(server => { 
     return (
       <section
@@ -33,7 +34,7 @@ function ServerNav(props){
   return (
     <div className='servers'>
     <Link to='/dashboard/messages'>
-        <div className='srvr-bttn'>Home</div>
+        <div className='srvr-bttn' onClick={() => props.selectServer({server_id: 0})}>Home</div>
     </Link>
       {serverDisplay}
       <div className='srvr-bttn'>New</div>

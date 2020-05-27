@@ -20,7 +20,18 @@ module.exports = {
     getServers: async(req, res) => {
         const db = req.app.get('db')
         const { userId } = req.params
+
         const servers = await db.server.get_servers([userId])
+        
         res.status(200).send(servers)
-    }
+    },
+
+  addUser: async (req, res) => {
+    const db = req.app.get('db')
+    const {userId, serverId} = req.body
+    
+    await db.server.new_server_user([userId, serverId])
+
+    res.sendStatus(200)
+  }
 }

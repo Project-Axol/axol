@@ -12,6 +12,7 @@ module.exports = {
         if (!addUser) return res.sendStatus(500)
         res.status(200).send(addUser)
     },
+    
     getUsers: async(req, res) => {
         const db = req.app.get('db')
 
