@@ -8,7 +8,7 @@ import {
     Typography
 } from '@material-ui/core'
 
-
+import fontLogo from '../../assets/font-logo.png'
 import './auth.styles.scss'
 
 class Auth extends Component{
@@ -80,6 +80,9 @@ class Auth extends Component{
                 <Paper className='container-prompt'>
                 {!this.state.signUpToggle ? 
                     <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-logo'>
+                            <img src={fontLogo} alt='axol-logo'/>
+                        </Grid>
                         <Grid item xs={12} className='grid-typography'>
                             <Typography variant='h5' color='primary' align='center'>
                                 Please sign in
@@ -107,7 +110,7 @@ class Auth extends Component{
                             onChange={e=>this.handleOnchange(e)}/>
                         </Grid>
                         <Grid item xs={12} className='grid-signup-link'>
-                            <Typography color='primary' align='center'>Don't have an account? <strong onClick={this.handleSignUpToggle}>SIGN UP</strong></Typography>
+                            <Typography color='primary' align='center'>Don't have an account? <strong className='strong-link' onClick={this.handleSignUpToggle}>SIGN UP</strong></Typography>
                         </Grid>
                         <Grid item xs={12} className='grid-submit'>
                             <Button 
@@ -131,6 +134,9 @@ class Auth extends Component{
                     </Grid>
                     :
                     <Grid container spacing={2} justify='center' alignItems='center'>
+                        <Grid item xs={12} className='grid-logo'>
+                            <img src={fontLogo} alt='axol-logo'/>
+                        </Grid>
                         <Grid item xs={12} className='grid-typography'>
                             <Typography variant='h5' color='primary' align='center'>
                                 Please create an account
@@ -177,7 +183,7 @@ class Auth extends Component{
                             />
                         </Grid>
                         <Grid item xs={12} className='grid-toggle'>
-                            <Typography color='primary' align='center'>Already have an account? <strong onClick={this.handleSignUpToggle}>SIGN IN</strong></Typography>
+                            <Typography className='strong-link' color='primary' align='center'>Already have an account? <strong onClick={this.handleSignUpToggle}>SIGN IN</strong></Typography>
                         </Grid>
                         <Grid item xs={12} className='grid-submit'>
                             <Button type='submit' variant="contained" color='primary' onClick={this.handleSignUpSubmit}> Sign Up</Button>

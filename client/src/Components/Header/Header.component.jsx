@@ -5,11 +5,12 @@ import {withRouter, useLocation} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
 import logo from '../../assets/icons8-axolotl.png'
-import addPeople from '../../assets/icons8-icons8-user-account-96.png'
+import addPeople from '../../assets/icons8-user-account-96.png'
 
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import './header.styels.scss'
 
@@ -23,12 +24,15 @@ const Header = (props) => {
     }
     return(
         <div className='header-container'>
-            <IconButton 
-            className='header-logo'
-            >
-                <img src={logo} alt="logo"/>
-                {/* <span>AXOL</span> */}
-            </IconButton>
+            <div className='header-home-icon'>
+                <IconButton 
+                className='header-logo'
+                >
+                    <img src={logo} alt="logo"/>
+                    {/* <span>AXOL</span> */}
+                </IconButton>
+
+            </div>
             {
                 props.userReducer.isLoggedIn?
                 !location.pathname.includes('messages') ?
@@ -50,7 +54,7 @@ const Header = (props) => {
                             variant='outlined'
                             />
                         </div>
-                        <Typography onClick={logout}>Log Out</Typography>
+                        <Button onClick={logout}>Log Out</Button>
                     </div>
                 </React.Fragment> 
                 :
@@ -72,7 +76,9 @@ const Header = (props) => {
                             variant='outlined'
                             />
                         </div>
-                        <Typography onClick={logout}>Log Out</Typography>
+                        <div>
+                            <Button onClick={logout}>Log Out</Button>
+                        </div>
                     </div>
                 </React.Fragment>
                 :

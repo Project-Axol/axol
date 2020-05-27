@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import './ServerNav.css'
+import './ServerNav.scss'
 import { selectServer } from '../../ducks/serverReducer'
 
 function ServerNav(props){
@@ -33,14 +33,14 @@ function ServerNav(props){
   })
 
   return (
-    <section className='servers'>
+    <div className='servers'>
     <Link to='/dashboard/messages'>
         <div className='srvr-bttn'>Home</div>
     </Link>
       {serverDisplay}
       <div className='srvr-bttn'>New</div>
       <div className='srvr-bttn'>search</div>
-    </section>
+    </div>
   )
 }
 

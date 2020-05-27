@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import './ChannelNav.css'
+import './ChannelNav.scss'
 
 function ChannelNav(props){
   let {server_id, server_name} = props.serverReducer.server

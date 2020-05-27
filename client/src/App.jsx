@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import router from './router';
 import {withRouter} from 'react-router-dom'
 import {auth, createUserProfile} from './firebase/firebase.utils'
@@ -52,9 +52,9 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="App">
-          <div className='header'>
+          {this.props.userReducer.isLoggedIn? <div className='header'>
             <Header />
-          </div>
+          </div> : null }
           <div className='main-content'>
             {router}
             <div>
@@ -91,7 +91,7 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#7289da'
+      main: '#A8D8E4'
     },
     secondary: {
       main: '#3ca374'
