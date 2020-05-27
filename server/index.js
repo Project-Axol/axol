@@ -4,6 +4,9 @@ const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
 
+const app = express()
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 const usersCtrl = require('./controllers/usersController')
 const serverCtrl = require('./controllers/serverController')
@@ -11,7 +14,6 @@ const categoryCtrl = require('./controllers/categoryController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
-const app = express()
 app.use(express.json())
 app.use(session({
     resave: false,
@@ -20,6 +22,13 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
+io.on('connection', (socket) => {
+    console.log('WE HAVA A NEW CONNECTION')
+
+    socket.on('disconnect', () => {
+        console.log('user had left')
+    })
+})
 
 app.post('/api/users', usersCtrl.validateAdduser)
 app.get('/api/userss', usersCtrl.getUsers)

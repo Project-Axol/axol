@@ -11,6 +11,7 @@ import './header.styels.scss'
 
 const Header = (props) => {
     let location = useLocation()
+    
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()
