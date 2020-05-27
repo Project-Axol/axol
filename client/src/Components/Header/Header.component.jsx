@@ -38,7 +38,7 @@ const Header = (props) => {
                 !location.pathname.includes('messages') ?
                 <React.Fragment>
                     <div className='header-server-name'>
-                        <Typography className='server-name-typography' variant='h6'>This is my server</Typography>
+                        <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                     </div>
                     <div className='header-server-channel'>
                         <Typography variant='h6'># Da Boiz</Typography>
@@ -93,7 +93,8 @@ const Header = (props) => {
 
 const MapStateToProps = state =>{
     return {
-        userReducer: state.userReducer
+        userReducer: state.userReducer,
+        serverReducer: state.serverReducer
     }
 }
 

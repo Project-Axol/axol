@@ -1,5 +1,6 @@
 const initialState = {
-  server: {}
+  server: {},
+  
 }
 
 const SELECT_SERVER = 'SELECT_SERVER'

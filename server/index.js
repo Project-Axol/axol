@@ -4,10 +4,10 @@ const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
 
-
 const usersCtrl = require('./controllers/usersController')
 const serverCtrl = require('./controllers/serverController')
 const categoryCtrl = require('./controllers/categoryController')
+const channelCtrl = require('./controllers/channelController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -26,9 +26,13 @@ app.get('/api/userss', usersCtrl.getUsers)
 
 app.post('/api/servers/:userId', serverCtrl.newServer)
 app.get('/api/servers/:userId', serverCtrl.getServers)
+app.post('/api/servers', serverCtrl.addUser)
 
 app.post('/api/categories/:serverId', categoryCtrl.newCategory)
 app.get('/api/categories/:serverId', categoryCtrl.getCategories)
+
+app.post(`/api/channels/:categoryId`, channelCtrl.newChannel)
+app.get(`/api/channels/:categoryId`, channelCtrl.getChannels)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../client/build`));
