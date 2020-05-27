@@ -1,0 +1,60 @@
+@import './utils/styles.util.scss';
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: $greyDark;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.header {
+    height: 8vh;
+    width: 100%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.auth-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: #202225;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-prompt {
+  overflow: hidden;
+  width: 80%;
+  max-width: 600px;
+  padding: 1em;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.grid-textfield {
+  text-align: center;
+}
+.main-content {
+    height: 92vh;
+    width: 100%;
+    overflow: hidden;
+}

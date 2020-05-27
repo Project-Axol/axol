@@ -1,0 +1,13 @@
+@import '../../utils/styles.util.scss';
+
+.grid-logo {
+    img {
+        width: 300px;
+        height: auto
+    }
+}
+.strong-link {
+    &:hover {
+        cursor: pointer
+    }
+}

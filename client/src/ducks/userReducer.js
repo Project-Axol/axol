@@ -32,7 +32,6 @@ export function getLoggedInUser() {
 }
 
 export default function(state = initialState, action) {
-    console.log('action has called me')
     switch (action.type) {
         case LOGIN_USER:
             return {...state, user: action.payload, isLoggedIn: true }
@@ -45,7 +44,6 @@ export default function(state = initialState, action) {
         case GET_USER + '_REJECTED':
             return state
         default:
-            console.log("returning default State: ", initialState)
             return state
     }
 }

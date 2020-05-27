@@ -1,0 +1,79 @@
+@import '../../utils/styles.util.scss';
+.header-container {
+    border: 1px solid $greyDark;
+    width: 100vw;
+    height: 8vh;
+    background-color: $greyLighter;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    color: $greyText;
+    box-sizing: border-box;
+    .header-home-icon {
+        background-color: $greyDark;
+        height: 80px;
+        width: 80px;
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .header-logo {
+        background-color: $greyLighter;
+        min-width: 75%;
+        height: 75%;
+        border-right: 1px solid black;
+        img {
+            width: auto;
+            height: 100%;
+        }
+    }
+    .header-server-name {
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 6px 0;
+        border-right: 1px solid black;
+        h2 {
+            margin: 0 3px;
+            align-self: center;
+        }
+    }
+    .header-server-channel {
+        width: 60%;
+        min-width: 45%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        img {
+            height: 60%;
+            width: auto;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .header-sign-out {
+        width: 23vw;
+        display: flex;
+        align-items: flex-end;;
+        flex-direction: row;
+        justify-content: space-between;
+        // padding-right: 5px;
+        // background-color: blue;
+        span {
+            // margin-left: 15px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -4,6 +4,11 @@ const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
 
+
+const usersCtrl = require('./controllers/usersController')
+const serverCtrl = require('./controllers/serverController')
+const categoryCtrl = require('./controllers/categoryController')
+
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
 const app = express()
@@ -15,12 +20,23 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
+
+app.post('/api/users', usersCtrl.validateAdduser)
+app.get('/api/userss', usersCtrl.getUsers)
+
+app.post('/api/servers/:userId', serverCtrl.newServer)
+app.get('/api/servers/:userId', serverCtrl.getServers)
+
+app.post('/api/categories/:serverId', categoryCtrl.newCategory)
+app.get('/api/categories/:serverId', categoryCtrl.getCategories)
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../client/build`));
     app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
 }
+
 massive({
     connectionString: CONNECTION_STRING,
     ssl: {
