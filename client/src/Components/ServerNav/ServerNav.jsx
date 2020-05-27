@@ -10,7 +10,8 @@ function ServerNav(props){
   const {user} = props.userReducer
 
   useEffect(() => {
-    axios.get(`/api/servers/${user.user_id}`)
+    axios.get(`/api/servers/21`)
+    // axios.get(`/api/servers/${user.user_id}`)
     .then(res => {
       setServers(res.data)
     })
@@ -18,6 +19,7 @@ function ServerNav(props){
       console.log(err)
     })
   }, [])
+
   const serverDisplay = servers.map(server => { 
     return (
       <section
@@ -33,7 +35,7 @@ function ServerNav(props){
   return (
     <section className='servers'>
     <Link to='/dashboard/messages'>
-        <div className='srvr-bttn'>Home</div>
+        <div className='srvr-bttn' onClick={() => props.selectServer({server_id: 0})}>Home</div>
     </Link>
       {serverDisplay}
       <div className='srvr-bttn'>New</div>

@@ -2,9 +2,9 @@ module.exports = {
   newCategory: async (req, res) => {
     const db = req.app.get('db')
     const {serverId} = req.params
-    const {category_name} = req.body
+    const {categoryName} = req.body
 
-    await db.category.new_category([category_name, serverId])
+    await db.category.new_category([categoryName, serverId])
 
     res.sendStatus(200)
   },
