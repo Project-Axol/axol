@@ -46,7 +46,7 @@ class Auth extends Component{
                 confirmPassword:''
             })
         }catch(err){
-            alert(err)
+            // alert(err)
         }
     }
 
@@ -70,7 +70,7 @@ class Auth extends Component{
                 confirmPassword:''
             })
         }catch(err){
-            alert(err)
+            // alert(err)
         }
     }
 
