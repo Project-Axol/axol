@@ -1,0 +1,43 @@
+@import '../../utils/styles.util.scss';
+.message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .message-user-img {
+        height: 60px;
+        width: 60px;
+        .user-img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+    .message-message-content {
+        margin-left: 20px;
+        text-align: left;
+        .message-message-info {
+            display: flex;
+            .message-user-name {
+                p {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+            }
+            .message-time-stamp {
+                color: $greyText;
+                font-size: .5rem;
+                margin-left: 10px;
+                p {
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+}

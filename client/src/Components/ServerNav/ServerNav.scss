@@ -1,7 +1,9 @@
+@import '../../utils/styles.util.scss';
+
 .servers {
     height: 100%;
     width: 80px;
-    background-color: blue;
+    background-color: $greyDark;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
@@ -13,6 +15,6 @@
     height: 50px;
     width: 50px;
     margin-top: 15px;
-    background-color: orange;
+    background-color: $primaryColor;
     border-radius: 50%;
 }
