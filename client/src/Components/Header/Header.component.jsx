@@ -69,10 +69,9 @@ const Header = (props) => {
                 </PopUp>
             }
             <div className='header-home-icon'>
-                <Link to='/dashboard'>
+                <Link to='/dashboard/messages'>
                     <IconButton className='header-logo'>
                         <img src={logo} alt="logo"/>
-                        {/* <span>AXOL</span> */}
                     </IconButton>
                 </Link>
             </div>
@@ -113,9 +112,13 @@ const Header = (props) => {
                         />
                     </div>
                     <div className='header-server-channel'>
-                        <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                        <Typography variant='h6'>Da Boiz</Typography>
-                        <img className='add-people-button' src={addPeople} alt="add users"/>
+                        <div className='header-server-channel-left'>
+                            <img className='header-hashtag' src={hashtag} alt='hashtag' />
+                            <Typography variant='h6'>Da Boiz</Typography>
+                        </div>
+                        <div className='header-server-channel-right'>
+                            <img className='add-people-button' src={addPeople} alt="add users"/>
+                        </div>
                     </div>
                     <div className='header-sign-out' >
                         <div className='header-search-friends'>
@@ -127,9 +130,7 @@ const Header = (props) => {
                             variant='outlined'
                             />
                         </div>
-                        <div>
-                            <Button onClick={logout}>Log Out</Button>
-                        </div>
+                        <Button onClick={logout}>Log Out</Button>
                     </div>
                 </React.Fragment>
                 :

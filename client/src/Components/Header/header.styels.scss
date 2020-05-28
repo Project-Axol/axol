@@ -68,6 +68,7 @@
         width: 90%;
         display: flex;
         align-items: center;
+        
     }
     .header-sign-out {
         width: 15vw;
@@ -121,5 +122,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        ::placeholder {
+            font-size: smaller;;
+        }
     }
 }
