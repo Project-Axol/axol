@@ -97,9 +97,11 @@
         justify-content: flex-end;
     }
     .add-people-button {
-        float: right;
         height: 75%;
-        // width: 10%;
+        width: auto;
+        :hover {
+            cursor: pointer;
+        }
     }
     .header-sign-out {
         // background-color: red;

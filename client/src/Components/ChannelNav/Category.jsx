@@ -21,8 +21,8 @@ function Category(props) {
   })
 
   return (
-    <section>
-      <section className='categories'>{category_name}</section>
+    <section className='categories'>
+      <section className='category-name'>{category_name}</section>
       <div>
         {channelsDisplay}
       </div>

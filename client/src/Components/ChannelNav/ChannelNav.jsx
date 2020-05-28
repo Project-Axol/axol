@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import './ChannelNav.scss'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
@@ -31,16 +30,14 @@ function ChannelNav(props){
     return (
       <List component='nav' >
         <Link to={`/dashboard/${category.category_id}`} key={i}>
-          <ListItem button>
             <Category key={category.category_id} category={category} />
-          </ListItem>
         </Link>
       </List>
     )
   })
 
   return (
-    <section className='channel'>
+    <section className='channel-nav'>
       {server_id > 0 ? categoryDisplay : <section>Friend list</section>}
       <div className='chnl-usr'></div>
     </section>
