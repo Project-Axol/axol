@@ -23,9 +23,9 @@ function ChannelNav(props){
     })
   }, [props.serverReducer.server])
 
-  const categoryDisplay = categories.map(category => {
+  const categoryDisplay = categories.map((category, i) => {
     return (
-      <Link to={`/dashboard/${category.category_id}`}>
+      <Link to={`/dashboard/${category.category_id}`} key={i}>
       <Category key={category.category_id} category={category} />
       </Link>
     )

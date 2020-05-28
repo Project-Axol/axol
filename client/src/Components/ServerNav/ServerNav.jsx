@@ -37,8 +37,7 @@ function ServerNav(props){
         <div className='srvr-bttn' onClick={() => props.selectServer({server_id: 0})}>Home</div>
     </Link>
       {serverDisplay}
-      <div className='srvr-bttn'>New</div>
-      <div className='srvr-bttn'>search</div>
+      <div className='srvr-bttn'>Add</div>
     </div>
   )
 }
