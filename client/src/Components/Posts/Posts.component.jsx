@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useParams, withRouter} from 'react-router-dom'
 import { animateScroll } from "react-scroll";
 import Message from '../Message/Message.component'
+import Messages from '../Messages/Messages.component';
 
 import './post.styles.scss'
 
@@ -50,7 +51,8 @@ const Posts = (props) => {
     })
     return (
         <div className='post-container'>
-            {posts.length?
+            <Messages/>
+            {/* {posts.length?
                 <div className='posts-posts' id='post-cont'>
                     {channelPosts}
                 </div>:
@@ -59,7 +61,7 @@ const Posts = (props) => {
                     <h1>NO POSTS...Select channel to see posts</h1>
                     
                 </div>
-            }
+            } */}
         </div>
     )
 }

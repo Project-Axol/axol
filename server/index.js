@@ -3,10 +3,11 @@ const session = require('express-session')
 const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
+const { addUser, removeUser, getUser, getUsersInGroup } = require('./socketHelpers/users')
 
 const app = express()
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server)
 
 const usersCtrl = require('./controllers/usersController')
 const serverCtrl = require('./controllers/serverController')
@@ -24,8 +25,22 @@ app.use(session({
 }))
 
 io.on('connection', (socket) => {
-    console.log('WE HAVA A NEW CONNECTION')
+    socket.on('join', ({ username, group, profilePic }, callback) => {
+        console.log('incoming user: ', username, group)
+        const { user } = addUser({ id: socket.id, username, group, profilePic })
+        console.log('who got added: ', user)
+        socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.group}` })
+        socket.broadcast.to(user.group).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.group}` })
+        socket.join(user.group)
+        callback()
+    })
 
+    socket.on('sendMessage', (message, callback) => {
+        const user = getUser(socket.id)
+        console.log('socket id messegint on: ', socket.id, 'user: ', user, 'message: ', message)
+        io.to(user.group).emit('message', { user: user.username, profilePic: user.profilePic, text: message })
+        callback()
+    })
     socket.on('disconnect', () => {
         console.log('user had left')
     })
@@ -59,5 +74,5 @@ massive({
 }).then(dbInstance => {
     app.set('db', dbInstance)
     console.log('DB connected and ready for use')
-    app.listen(process.env.PORT || SERVER_PORT, () => console.log(`Server is up and running on port ${SERVER_PORT}`))
+    server.listen(process.env.PORT || SERVER_PORT, () => console.log(`Server is up and running on port ${SERVER_PORT}`))
 })

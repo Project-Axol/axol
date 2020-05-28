@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
-import {withRouter, useLocation} from 'react-router-dom'
+import {withRouter, useLocation, Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
 import logo from '../../assets/icons8-axolotl.png'
@@ -18,6 +18,7 @@ import Axios from 'axios'
 
 const Header = (props) => {
     let location = useLocation()
+    let {server_id} = props.serverReducer.server
     const [popUp, togglePopUp] = useState(false)
     const [searchRes, setSearchRes]=useState([])
     const logout = () =>{
@@ -27,7 +28,13 @@ const Header = (props) => {
         })
     }
     const handleAddUserToChannel =(user)=>{
-        
+        let data = {
+            userId: user.user_id,
+            serverId: server_id
+        }
+        Axios.post('/api/servers', data).then(res =>{
+
+        })
     }
     const handleOnchange = (e) =>{
         Axios.get(`/api/users?username=${e.target.value}`).then(res => {
@@ -61,13 +68,12 @@ const Header = (props) => {
                 </PopUp>
             }
             <div className='header-home-icon'>
-                <IconButton 
-                className='header-logo'
-                >
-                    <img src={logo} alt="logo"/>
-                    {/* <span>AXOL</span> */}
-                </IconButton>
-
+                <Link to='/dashboard'>
+                    <IconButton className='header-logo'>
+                        <img src={logo} alt="logo"/>
+                        {/* <span>AXOL</span> */}
+                    </IconButton>
+                </Link>
             </div>
             {
                 props.userReducer.isLoggedIn?
