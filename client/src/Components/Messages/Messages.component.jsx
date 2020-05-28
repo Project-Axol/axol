@@ -10,7 +10,7 @@ let socket;
 const Messages = (props) =>{
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
-    const Endpoint = 'https://axol.herokuapp.com/dashboard'
+    const Endpoint = 'https://axol.herokuapp.com/'
     const serverid = props.serverReducer.server.server_id
     const user = props.userReducer.user
     useEffect(()=>{
