@@ -1,7 +1,18 @@
 @import '../../utils/styles.util.scss';
 
-.channel {
+.channel-nav {
   height: 100%;
-  width: 200px;
+  width: 15vw;
   background-color: $greyLight;
+}
+.channel-nav-hashtag {
+  height: 20px;
+  width: auto;
+  margin: 5px;
+}
+.channel-name {
+  color: white;
+}
+.category-name {
+  color: white;
 }
