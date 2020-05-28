@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
@@ -14,31 +14,67 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import './header.styels.scss'
+import PopUp from '../Popup/PopUp.component'
+import Axios from 'axios'
 
 const Header = (props) => {
     let location = useLocation()
+    let {server_id} = props.serverReducer.server
+    const [popUp, togglePopUp] = useState(false)
+    const [searchRes, setSearchRes]=useState([])
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()
             props.history.push('/')
         })
     }
+    const handleAddUserToChannel =(user)=>{
+        let data = {
+            userId: user.user_id,
+            serverId: server_id
+        }
+        Axios.post('/api/servers', data).then(res =>{
 
-    const inputProps = {
-
+        })
     }
-
+    const handleOnchange = (e) =>{
+        Axios.get(`/api/users?username=${e.target.value}`).then(res => {
+            setSearchRes(res.data)
+        }).catch(()=>alert('Something went wrong searching for user'))
+    }
+    const foundUsers = searchRes.map((user, i) => {
+        return (
+            <div key={i} onClick={()=>handleAddUserToChannel({user})}>
+                <div className='search-user-img'>
+                    <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile Picture"/>
+                </div>
+            </div>
+        )
+    })
     return(
         <div className='header-container'>
+            {popUp &&
+                <PopUp>
+                    <form onSubmit={handleAddUserToChannel}>
+                        <h1>Search Users</h1>
+                        <div className='crate-playlist-input-container'>
+                            <input placeholder='Username...' type="text" onChange={handleOnchange}/>
+                        </div>
+                        <div>
+                            {foundUsers}
+                        </div>
+                        <button onClick={()=>togglePopUp(!popUp)}>CANCEL</button>
+                        <button>CREATE PLAYLIST</button>
+                    </form>
+                </PopUp>
+            }
             <div className='header-home-icon'>
-                <Link to='/dashboard/messages'>
-                    <IconButton 
-                    className='header-logo'
-                    >
-                        <img className='header-logo' src={logo} alt="logo"/>
+                <Link to='/dashboard'>
+                    <IconButton className='header-logo'>
+                        <img src={logo} alt="logo"/>
+                        {/* <span>AXOL</span> */}
                     </IconButton>
                 </Link>
-
             </div>
             {
                 props.userReducer.isLoggedIn?
