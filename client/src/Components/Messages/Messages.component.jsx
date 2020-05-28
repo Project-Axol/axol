@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, useParams} from 'react-router-dom'
 import Message from '../Message/Message.component'
 
 import './messages.styles.scss'
 let socket;
 const Messages = (props) =>{
+    const {id} = useParams()
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
     const Endpoint = 'https://axol.herokuapp.com/'
@@ -16,12 +17,13 @@ const Messages = (props) =>{
     useEffect(()=>{
         if(socket){
             socket.emit('disconnect')
+            setMessages([])
         }
         socket = io.connect(Endpoint, {transport : ['websocket'] })
         
         //socket to do specific thing on join
         console.log('user: ', user, ' : serverid: ', serverid)
-        socket.emit('join', {username: user.user_name, profilePic:user.profile_pic, group: serverid}, () =>{
+        socket.emit('join', {username: user.user_name, profilePic:user.profile_pic, group: id}, () =>{
             //error handling goes here
         })
 
@@ -30,7 +32,7 @@ const Messages = (props) =>{
             socket.emit('disconnect')
             socket.off()
         }
-    },[Endpoint, serverid])
+    },[Endpoint, id])
     //incoming messages 
     useEffect(()=>{
         socket.on('message', (message) =>{
