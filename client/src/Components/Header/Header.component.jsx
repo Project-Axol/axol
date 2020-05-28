@@ -85,7 +85,7 @@ const Header = (props) => {
                     <div className='header-server-channel'>
                         <div className='header-server-channel-left'>
                             <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography variant='h6'>Da Boiz</Typography>
+                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
                         </div>
                         <div className='header-server-channel-right'>
                             <img className='add-people-button' src={addPeople} alt="add users"/>
@@ -114,7 +114,7 @@ const Header = (props) => {
                     <div className='header-server-channel'>
                         <div className='header-server-channel-left'>
                             <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography variant='h6'>Da Boiz</Typography>
+                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
                         </div>
                         <div className='header-server-channel-right'>
                             <img className='add-people-button' src={addPeople} alt="add users"/>
