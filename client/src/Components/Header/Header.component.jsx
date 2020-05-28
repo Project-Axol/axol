@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
-import {withRouter, useLocation} from 'react-router-dom'
+import {withRouter, useLocation, Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
 import logo from '../../assets/icons8-axolotl.png'
 import addPeople from '../../assets/icons8-user-account-96.png'
+import hashtag from '../../assets/icons8-hashtag-100.png'
 
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -22,15 +23,21 @@ const Header = (props) => {
             props.history.push('/')
         })
     }
+
+    const inputProps = {
+
+    }
+
     return(
         <div className='header-container'>
             <div className='header-home-icon'>
-                <IconButton 
-                className='header-logo'
-                >
-                    <img src={logo} alt="logo"/>
-                    {/* <span>AXOL</span> */}
-                </IconButton>
+                <Link to='/dashboard/messages'>
+                    <IconButton 
+                    className='header-logo'
+                    >
+                        <img className='header-logo' src={logo} alt="logo"/>
+                    </IconButton>
+                </Link>
 
             </div>
             {
@@ -41,37 +48,45 @@ const Header = (props) => {
                         <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                     </div>
                     <div className='header-server-channel'>
-                        <Typography variant='h6'># Da Boiz</Typography>
-                        <img src={addPeople} alt="add users"/>
+                        <div className='header-server-channel-left'>
+                            <img className='header-hashtag' src={hashtag} alt='hashtag' />
+                            <Typography variant='h6'>Da Boiz</Typography>
+                        </div>
+                        <div className='header-server-channel-right'>
+                            <img className='add-people-button' src={addPeople} alt="add users"/>
+
+                        </div>
                     </div>
                     <div className='header-sign-out' >
                         <div className='header-search-friends'>
                         <TextField
-                            id='outlined-search-small'
+                            id='outlined-search-header'
                             size='small'
-                            label='Search Users'
+                            placeholder='Search Users'
                             type='search'
                             variant='outlined'
                             />
                         </div>
-                        <Button onClick={logout}>Log Out</Button>
+                        <Button size='small' onClick={logout}>Log Out</Button>
                     </div>
                 </React.Fragment> 
                 :
                 <React.Fragment>
                     <div className='header-server-name'>
-                        <TextField type='text' placeholder='Search Conversations'/>
+                        <TextField id='outlined-conversations-header' type='search' variant='outlined' size='small' placeholder='Conversations'
+                        />
                     </div>
                     <div className='header-server-channel'>
-                        <Typography variant='h6'># Da Boiz</Typography>
-                        <img src={addPeople} alt="add users"/>
+                        <img className='header-hashtag' src={hashtag} alt='hashtag' />
+                        <Typography variant='h6'>Da Boiz</Typography>
+                        <img className='add-people-button' src={addPeople} alt="add users"/>
                     </div>
                     <div className='header-sign-out' >
                         <div className='header-search-friends'>
                             <TextField
-                            id='outlined-search-small'
+                            id='outlined-search-header'
                             size='small'
-                            label='Search Users'
+                            placeholder='Search Users'
                             type='search'
                             variant='outlined'
                             />

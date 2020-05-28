@@ -37,9 +37,9 @@ function ServerNav(props){
 
   return (
     <div className='servers'>
-    <Link to='/dashboard/messages'>
+    {/* <Link to='/dashboard/messages'>
         <div className='srvr-bttn' onClick={() => props.selectServer({server_id: 0})}>Home</div>
-    </Link>
+    </Link> */}
       {serverDisplay}
       <div className='server-nav-find-btn'>
         <IconButton><img className='find-btn-img' src={findServerButton} alt='new-server-button'/></IconButton>
