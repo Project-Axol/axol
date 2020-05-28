@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import './ServerNav.scss'
 import { selectServer } from '../../ducks/serverReducer'
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import findServerButton from '../../assets/icons8-compass-96.png'
 
 function ServerNav(props){
@@ -23,14 +24,16 @@ function ServerNav(props){
 
   const serverDisplay = servers.map(server => { 
     return (
-      <section
+      <section className='server-buttons'>
+        <div
         key={server.server_id}
         className='srvr-bttn'
         onClick={() => {
           props.selectServer(server)
         }}
-      >
-        <IconButton><div className='server-icon-btn'>Hi</div></IconButton>
+        >
+          <div className='server-icon-btn'>Hi</div>
+        </div>
       </section>
     )
   })
