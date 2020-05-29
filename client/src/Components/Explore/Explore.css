@@ -1,0 +1,34 @@
+.explore {
+  height: 100vh;
+  width: 94vw;
+}
+
+.explore-search {
+  height: 25%;
+  width: 100%;
+  background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-results {
+  height: 75%;
+  width: 100%;
+  background-color: green;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  overflow: scroll;
+}
+
+.display {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: orange;
+  margin: 10px;
+}

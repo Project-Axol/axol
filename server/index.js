@@ -27,6 +27,8 @@ app.get('/api/userss', usersCtrl.getUsers)
 app.post('/api/servers/:userId', serverCtrl.newServer)
 app.get('/api/servers/:userId', serverCtrl.getServers)
 app.post('/api/servers', serverCtrl.addUser)
+app.get('/api/most', serverCtrl.getMost)
+app.post('/api/search', serverCtrl.searchServers)
 
 app.post('/api/categories/:serverId', categoryCtrl.newCategory)
 app.get('/api/categories/:serverId', categoryCtrl.getCategories)

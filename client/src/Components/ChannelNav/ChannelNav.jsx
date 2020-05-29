@@ -9,9 +9,13 @@ function ChannelNav(props){
   let {server_id} = props.serverReducer.server
   const [categories, setCategories] = useState([])
 
+  const initialLogin = () => {
+    server_id = 0
+  }
+
   useEffect(() => {
     if(!server_id){
-      server_id = 0
+      initialLogin()
     }
 
     axios.get(`/api/categories/${server_id}`)

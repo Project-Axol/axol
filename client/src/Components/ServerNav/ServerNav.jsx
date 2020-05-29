@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './ServerNav.scss'
-import { selectServer } from '../../ducks/serverReducer'
+import { selectServer, userServers } from '../../ducks/serverReducer'
 
 function ServerNav(props){
-  const [servers, setServers] = useState([])
-  const {user} = props.userReducer
+  const {servers} = props.serverReducer
+  // const {user} = props.userReducer
 
   useEffect(() => {
     axios.get(`/api/servers/${21}`)
     .then(res => {
-      setServers(res.data)
+      props.userServers(res.data)
     })
     .catch(err => {
       console.log(err)
@@ -37,11 +37,13 @@ function ServerNav(props){
         <div className='srvr-bttn' onClick={() => props.selectServer({server_id: 0})}>Home</div>
     </Link>
       {serverDisplay}
-      <div className='srvr-bttn'>Add</div>
+      <Link to='/explore'>
+        <div className='srvr-bttn'>Add</div>
+      </Link>
     </div>
   )
 }
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {selectServer})(ServerNav)
+export default connect(mapStateToProps, {selectServer, userServers})(ServerNav)
