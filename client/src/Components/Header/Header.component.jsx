@@ -4,7 +4,7 @@ import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
-import logo from '../../assets/icons8-axolotl.png'
+import logo from '../../assets/home-icon.svg'
 import addPeople from '../../assets/icons8-user-account-96.png'
 import hashtag from '../../assets/icons8-hashtag-100.png'
 
