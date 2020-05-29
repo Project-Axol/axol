@@ -4,6 +4,7 @@ import ServerNav from '../../Components/ServerNav/ServerNav'
 import ChannelNav from '../../Components/ChannelNav/ChannelNav'
 // import 
 import Posts from '../../Components/Posts/Posts.component'
+import TextField from '@material-ui/core/TextField'
 
 
 import './dashboard.styles.scss'
@@ -22,7 +23,13 @@ const DashboardPage = (props) =>{
                     <DirectMessages/>
                 }
                 <div className='dashboard-message-input'>
-                    <input type="text" placeholder='Message...'/>
+                    <TextField
+                    id='outlined-message-input'
+                    size='small'
+                    placeholder='Message...'
+                    fullWidth
+                    variant='outlined'
+                    />
                 </div>
             </div>
         </div>
