@@ -4,7 +4,7 @@ import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
-import logo from '../../assets/icons8-axolotl.png'
+import logo from '../../assets/home-icon.svg'
 import addPeople from '../../assets/icons8-user-account-96.png'
 import hashtag from '../../assets/icons8-hashtag-100.png'
 
@@ -85,7 +85,7 @@ const Header = (props) => {
                     <div className='header-server-channel'>
                         <div className='header-server-channel-left'>
                             <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography variant='h6'>Da Boiz</Typography>
+                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
                         </div>
                         <div className='header-server-channel-right'>
                             <img className='add-people-button' src={addPeople} alt="add users"/>
@@ -114,7 +114,7 @@ const Header = (props) => {
                     <div className='header-server-channel'>
                         <div className='header-server-channel-left'>
                             <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography variant='h6'>Da Boiz</Typography>
+                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
                         </div>
                         <div className='header-server-channel-right'>
                             <img className='add-people-button' src={addPeople} alt="add users"/>

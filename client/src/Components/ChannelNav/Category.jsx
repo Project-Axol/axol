@@ -25,10 +25,10 @@ function Category(props) {
 
   return (
     <section className='categories'>
-      <section className='category-name'>{category_name}</section>
-      <div>
-        {channelsDisplay}
-      </div>
+        <section className='category-name'>{category_name}</section>
+        <div className='channels-list'>
+          {channelsDisplay}
+        </div>
     </section>
   )
 }

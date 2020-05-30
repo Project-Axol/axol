@@ -1,11 +1,12 @@
 import React from 'react'
 
 import './message.styles.scss'
+import ListItem from '@material-ui/core/ListItem'
 
 
 const Message = (props) =>{
     return(
-        <section key={props.key} className='message-container'>
+        <ListItem  button key={props.key} className='message-container'>
             <div className='message-user-img'>
                 <div className='user-img'>
                     <img src={props.message.profilePic} alt="profile"/>
@@ -29,7 +30,7 @@ const Message = (props) =>{
                     </div>
                 </div>
             </div>
-        </section>
+        </ListItem>
     )
 }
 

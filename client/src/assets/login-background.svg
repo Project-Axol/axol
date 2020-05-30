@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>login-background</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="2.43326757%" y1="26.652782%" x2="50%" y2="75.2839506%" id="linearGradient-1">
+            <stop stop-color="#202225" offset="0%"></stop>
+            <stop stop-color="#40444B" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#A8D8E4" x="0" y="0" width="1440" height="1024"></rect>
+        <circle id="Oval" fill="#A8D1A9" cx="832" cy="742" r="51"></circle>
+        <circle id="Oval-Copy-30" fill="#A8D1A9" cx="1071" cy="190" r="51"></circle>
+        <circle id="Oval-Copy-13" fill-opacity="0.25" fill="#A8D1A9" cx="832" cy="729" r="51"></circle>
+        <circle id="Oval-Copy-26" fill-opacity="0.25" fill="#A8D1A9" cx="1047" cy="188" r="51"></circle>
+        <circle id="Oval-Copy-27" fill-opacity="0.25" fill="#A8D1A9" cx="1349" cy="428" r="51"></circle>
+        <circle id="Oval-Copy" fill="#24473D" cx="1044.5" cy="828.5" r="25.5"></circle>
+        <circle id="Oval-Copy-22" fill="#24473D" cx="1311.5" cy="1024.5" r="25.5"></circle>
+        <circle id="Oval-Copy-12" fill-opacity="0.211784309" fill="#24473D" cx="1070.5" cy="827.5" r="25.5"></circle>
+        <circle id="Oval-Copy-28" fill-opacity="0.211784309" fill="#24473D" cx="745.5" cy="507.5" r="25.5"></circle>
+        <circle id="Oval-Copy-23" fill-opacity="0.211784309" fill="#24473D" cx="1337.5" cy="1023.5" r="25.5"></circle>
+        <circle id="Oval-Copy-2" fill="#E28489" cx="1157" cy="564" r="51"></circle>
+        <circle id="Oval-Copy-11" fill-opacity="0.25" fill="#E28489" cx="1149" cy="576" r="51"></circle>
+        <circle id="Oval-Copy-8" fill="#8ABDCA" cx="498" cy="930" r="51"></circle>
+        <circle id="Oval-Copy-21" fill-opacity="0.25" fill="#8ABDCA" cx="514" cy="915" r="51"></circle>
+        <circle id="Oval-Copy-9" fill="#24473D" cx="600" cy="640" r="51"></circle>
+        <circle id="Oval-Copy-20" fill-opacity="0.25" fill="#24473D" cx="573" cy="658" r="51"></circle>
+        <circle id="Oval-Copy-5" fill="#E2BFC3" cx="1323.5" cy="853.5" r="25.5"></circle>
+        <circle id="Oval-Copy-14" fill-opacity="0.25" fill="#E2BFC3" cx="1312.5" cy="847.5" r="25.5"></circle>
+        <circle id="Oval-Copy-6" fill="#8ABDCA" cx="1226.5" cy="754.5" r="12.5"></circle>
+        <g id="Group" transform="translate(841.000000, 937.000000)" fill="#E28388">
+            <circle id="Oval-Copy-18" cx="18.5" cy="12.5" r="12.5"></circle>
+            <circle id="Oval-Copy-19" fill-opacity="0.25" cx="12.5" cy="16.5" r="12.5"></circle>
+        </g>
+        <g id="Group-Copy" transform="translate(1071.000000, 343.000000)" fill="#E28388">
+            <circle id="Oval-Copy-18" cx="18.5" cy="12.5" r="12.5"></circle>
+            <circle id="Oval-Copy-19" fill-opacity="0.25" cx="12.5" cy="16.5" r="12.5"></circle>
+        </g>
+        <circle id="Oval-Copy-15" fill-opacity="0.25" fill="#8ABDCA" cx="1220.5" cy="758.5" r="12.5"></circle>
+        <circle id="Oval-Copy-7" fill="#A8D1A9" cx="1327.5" cy="625.5" r="12.5"></circle>
+        <circle id="Oval-Copy-16" fill-opacity="0.245356206" fill="#A8D1A9" cx="1332.5" cy="619.5" r="12.5"></circle>
+        <circle id="Oval-Copy-3" fill="#E2BFC3" cx="921" cy="508" r="56"></circle>
+        <circle id="Oval-Copy-10" fill-opacity="0.24" fill="#E2BFC3" cx="939" cy="513" r="56"></circle>
+        <circle id="Oval-Copy-4" fill="#24473D" cx="1262.5" cy="287.5" r="35.5"></circle>
+        <circle id="Oval-Copy-17" fill-opacity="0.25" fill="#24473D" cx="1268.5" cy="274.5" r="35.5"></circle>
+        <path d="M0,0 L1440,0 C1083.69378,93.5575013 832.731793,272.019359 687.114036,535.385574 C582.13703,741.795191 353.099018,904.666667 0,1024 L0,0 Z" id="Rectangle" fill="url(#linearGradient-1)"></path>
+        <circle id="Oval-Copy-24" fill="#E28489" cx="1444" cy="77" r="51"></circle>
+        <circle id="Oval-Copy-25" fill-opacity="0.25" fill="#E28489" cx="1436" cy="89" r="51"></circle>
+        <circle id="Oval-Copy-29" fill-opacity="0.245356206" fill="#A8D1A9" cx="1431.5" cy="754.5" r="12.5"></circle>
+    </g>
+</svg>

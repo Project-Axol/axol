@@ -33,5 +33,24 @@ module.exports = {
     await db.server.new_server_user([userId, serverId])
 
     res.sendStatus(200)
+  },
+
+  getMost: async (req, res) => {
+    const db = req.app.get('db')
+
+    const servers = await db.server.get_most_users()
+
+    res.status(200).send(servers)
+  },
+
+  searchServers: async (req, res) => {
+    const db = req.app.get('db')
+    let {search} = req.body
+
+    search += '%'
+
+    const results = await db.server.search_server([search])
+
+    res.status(200).send(results)
   }
 }

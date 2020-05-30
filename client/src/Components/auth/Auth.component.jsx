@@ -8,7 +8,7 @@ import {
     Typography
 } from '@material-ui/core'
 
-import fontLogo from '../../assets/font-logo.png'
+import fontLogo from '../../assets/axol-auth-logo.svg'
 import './auth.styles.scss'
 
 class Auth extends Component{

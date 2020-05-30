@@ -55,6 +55,7 @@ const Messages = (props) =>{
         return <Message message={message} key={i}/>
     })
     return(
+<<<<<<< HEAD
         <div className='messages-container'>
                 <ScrollToBottom className='messages-messages'>
                     {groupMessages}
@@ -70,6 +71,13 @@ const Messages = (props) =>{
                     onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}
                     />
                 </div>
+=======
+        <div>
+            <div className='messages' >
+                {groupMessages}
+                <input value={message} onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}/>
+            </div>
+>>>>>>> staging
         </div>
     )
 }

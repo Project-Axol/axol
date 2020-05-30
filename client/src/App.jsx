@@ -86,6 +86,16 @@ const theme = createMuiTheme({
         backgroundColor: '#36393E',
         position: "absolute"
       }
+    },
+    MuiListItem: {
+      button: {
+        onClick: {
+          colorPrimary: '#E2BFC3'
+        },
+        onMouseUp: {
+          colorPrimary: '#e28489'
+        }
+      }
     }
   },
   palette: {
