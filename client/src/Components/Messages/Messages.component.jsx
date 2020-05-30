@@ -13,7 +13,7 @@ const Messages = (props) =>{
     const {id} = useParams()
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
-    const Endpoint = 'http://localhost:3000/'
+    const Endpoint = 'https://axol.herokuapp.com/'
     const serverid = props.serverReducer.server.server_id
     const user = props.userReducer.user
     useEffect(()=>{
