@@ -3,7 +3,7 @@ const session = require('express-session')
 const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
-const { addUser, removeUser, getUser, getUsersInGroup } = require('./socketHelpers/users')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./socketHelpers/users')
 
 const app = express()
 const server = require('http').Server(app);
@@ -24,21 +24,36 @@ app.use(session({
     secret: SESSION_SECRET
 }))
 
+const timeDate = () => {
+    let today = new Date()
+    return today
+        // return `${today.getHours()}:${('0'+today.getMinutes()).slice(-2)}`
+}
 io.on('connection', (socket) => {
-    socket.on('join', ({ username, group, profilePic }, callback) => {
-        console.log('incoming user: ', username, group)
-        const { user } = addUser({ id: socket.id, username, group, profilePic })
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('join-room', ({ room, username, profilePic }, callback) => {
+        console.log("ROOOMMMMMMMOOOMMM: ", room)
+        const { user } = addUser({ id: socket.id, username, room: room, profilePic })
         console.log('who got added: ', user)
-        socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.group}` })
-        socket.broadcast.to(user.group).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.group}` })
-        socket.join(user.group)
-        callback()
-    })
+        socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.room}`, postTime: timeDate() })
+        socket.broadcast.to(user.room).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.room}` })
+        socket.join(user.room);
+        // callback()
+    });
+    // socket.on('join', ({ username, group, profilePic }, callback) => {
+    //     console.log('incoming user: ', username, group)
+    //     const { user } = addUser({ id: socket.id, username, group, profilePic })
+    //     console.log('who got added: ', user)
+    //     socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.group}` })
+    //     socket.broadcast.to(user.group).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.group}` })
+    //     socket.join(user.group)
+    //     callback()
+    // })
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
         console.log('socket id messegint on: ', socket.id, 'user: ', user, 'message: ', message)
-        io.to(user.group).emit('message', { user: user.username, profilePic: user.profilePic, text: message })
+        io.to(user.room).emit('message', { user: user.username, profilePic: user.profilePic, text: message, postTime: timeDate() })
         callback()
     })
     socket.on('disconnect', () => {

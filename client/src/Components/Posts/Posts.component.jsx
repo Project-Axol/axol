@@ -13,7 +13,7 @@ const Posts = (props) => {
     }
     return (
         <div className='post-container'>
-            <Messages/>
+            <Messages dashType='post'/>
         </div>
     )
 }

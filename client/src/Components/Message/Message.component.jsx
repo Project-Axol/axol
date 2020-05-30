@@ -17,7 +17,7 @@ const Message = (props) =>{
                         <p>{props.message.user}</p>
                     </div>
                     <div className='message-time-stamp'>
-                        <p>05/24/2020 03:44</p>
+                        <p>{props.message.postTime}</p>
                     </div>
                 </div>
                 <div className='message-message-data'>

@@ -1,6 +1,6 @@
 const users = [];
-const addUser = ({ id, username, group, profilePic }) => {
-    const user = { id, username, group, profilePic }
+const addUser = ({ id, username, room, profilePic }) => {
+    const user = { id, username, room, profilePic }
     users.push(user)
     return { user }
 }
@@ -14,6 +14,6 @@ const removeUser = (id) => {
 
 const getUser = (id) => users.find(user => user.id === id)
 
-const getUsersInGroup = (group) => users.filter(user => user.group === group)
+const getUsersInRoom = (room) => users.filter(user => user.room === room)
 
-module.exports = { addUser, removeUser, getUser, getUsersInGroup }
+module.exports = { addUser, removeUser, getUser, getUsersInRoom }

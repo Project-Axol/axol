@@ -3,11 +3,10 @@ import {useLocation} from 'react-router-dom'
 import ServerNav from '../../Components/ServerNav/ServerNav'
 import ChannelNav from '../../Components/ChannelNav/ChannelNav'
 import Posts from '../../Components/Posts/Posts.component'
-import TextField from '@material-ui/core/TextField'
+import DirectMessages from '../../Components/DirectMessages/DirectMessages.component'
 
 
 import './dashboard.styles.scss'
-import DirectMessages from '../../Components/DirectMessages/DirectMessages.component'
 
 
 const DashboardPage = (props) =>{
@@ -21,15 +20,6 @@ const DashboardPage = (props) =>{
                     <Posts/>:
                     <DirectMessages/>
                 }
-                <div className='dashboard-message-input'>
-                    <TextField
-                    id='outlined-message-input'
-                    size='small'
-                    placeholder='Message...'
-                    fullWidth
-                    variant='outlined'
-                    />
-                </div>
             </div>
         </div>
     )
