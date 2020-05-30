@@ -5,9 +5,10 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    cursor: default;
     .message-user-img {
-        height: 60px;
-        width: 60px;
+        height: 40px;
+        width: 40px;
         .user-img {
             height: 100%;
             width: 100%;
@@ -26,17 +27,28 @@
             display: flex;
             .message-user-name {
                 p {
-                    font-size: 1.2rem;
-                    font-weight: bold;
+                    font-size: 1rem;
+                    // font-weight: 600;
+                    font-family: $subheader;
+                    color: $secondaryColor;
                 }
             }
             .message-time-stamp {
                 color: $greyText;
-                font-size: .5rem;
+                font-size: .7rem;
                 margin-left: 10px;
+                font-family: $paragraph;
                 p {
-                    padding-top: 10px;
+                    padding-top: 7px;
                 }
+            }
+        }
+        .message-message {
+            p {
+                font-family: $paragraph;
+                font-weight: 100;
+                color: white;
+                font-size: .9rem;
             }
         }
     }

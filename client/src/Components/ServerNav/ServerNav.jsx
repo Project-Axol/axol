@@ -45,9 +45,11 @@ function ServerNav(props){
     </Link> */}
       {serverDisplay}
       <div className='server-nav-find-btn'>
-        <IconButton><Link to='explore'>
-          <img className='find-btn-img' src={findServerButton} alt='new-server-button'/>
-        </Link></IconButton>
+        <Link to='/explore'>
+          <IconButton>
+            <img className='find-btn-img' src={findServerButton} alt='new-server-button'/>
+          </IconButton>
+        </Link>
       </div>
     </div>
   )

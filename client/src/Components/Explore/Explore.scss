@@ -1,0 +1,84 @@
+@import '../../utils/styles.util.scss';
+
+.explore {
+  height: 100vh;
+  width: 95vw;
+}
+
+.explore-search {
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  width: 100%;
+  padding-left: 500px;
+  padding-right: 500px;
+  background-color: $greyDark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-results-container {
+  height: 75%;
+  width: 100vw;
+  display: flex;
+  background-color: $greyLight;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.explore-results-header {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $tertiaryColor;
+  font-family: $exploreHeader;
+  margin: 50px;
+}
+
+.explore-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  overflow: scroll;
+}
+
+.server-tile {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 300px;
+  margin: 30px;
+  // .tile-grid-container {
+  //   height: 100%;
+  //   width: 100%;
+  //   display: flex;
+  //   // flex-direction: column;
+  //   margin: 0;
+  //   padding: 0;
+  //   // .grid-server-img {
+  //   //   height: 70%;
+  //   //   width: 100%;
+  //   //   background-color: $tertiaryColor;
+  //   //   display: flex;
+  //   //   justify-content: center;
+  //   //   align-items: center;
+  //   // }
+  //   // .grid-server-name {
+  //   //   height: 30%;
+  //   //   width: 100%;
+  //   //   background-color: $greyLightest;
+  //   // }
+  // }
+}
+
+.create-server-tile {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  margin: 30px;
+}

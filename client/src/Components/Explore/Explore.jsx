@@ -3,7 +3,8 @@ import axios from 'axios'
 import MostUsers from './MostUsers'
 import Searched from './Searched'
 import CreateServer from './CreateServer'
-import './Explore.css'
+import './Explore.scss'
+import { TextField, Typography } from '@material-ui/core'
 
 function Explore() {
   const [search, setSearch] = useState('')
@@ -37,12 +38,20 @@ function Explore() {
   return (
     <section className='explore'>
       <section className='explore-search'>
-        <input 
-          placeholder='Search...'
+        <Typography className='explore-results-header'variant='h3' >
+          Explore Popular Servers
+        </Typography>
+        <TextField
+          fullWidth
+          variant='outlined' 
+          type='search'
+          label='Search...'
+          size='large'
           onChange={event => setSearch(event.target.value)}
         />
       </section>
-      <section className='explore-results'>
+      <section className='explore-results-container'>
+        <div className='explore-results'>
         {!search ? (
           <React.Fragment>
             {mostUserServers}
@@ -58,6 +67,7 @@ function Explore() {
           </React.Fragment>
           )
         )}
+        </div>
       </section>
     </section>
   )

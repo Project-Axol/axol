@@ -57,7 +57,7 @@ const Messages = (props) =>{
     })
     return(
         <div>
-            <div>
+            <div className='messages' >
                 {groupMessages}
                 <input value={message} onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}/>
             </div>
