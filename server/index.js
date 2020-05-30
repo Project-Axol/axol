@@ -38,7 +38,8 @@ io.on('connection', (socket) => {
         socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.room}`, postTime: timeDate() })
         socket.broadcast.to(user.room).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.room}` })
         socket.join(user.room);
-        // callback()
+        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
+            // callback()
     });
     // socket.on('join', ({ username, group, profilePic }, callback) => {
     //     console.log('incoming user: ', username, group)
@@ -52,8 +53,9 @@ io.on('connection', (socket) => {
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
-        console.log('socket id messegint on: ', socket.id, 'user: ', user, 'message: ', message)
+            // console.log('socket id messegint on: ', socket.id, 'user: ', user, 'message: ', message)
         io.to(user.room).emit('message', { user: user.username, profilePic: user.profilePic, text: message, postTime: timeDate() })
+        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
         callback()
     })
     socket.on('disconnect', () => {

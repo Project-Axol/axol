@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactEmoji from 'react-emoji'
 
 import './message.styles.scss'
 import ListItem from '@material-ui/core/ListItem'
@@ -23,7 +24,7 @@ const Message = (props) =>{
                 </div>
                 <div className='message-message-data'>
                     <div className='message-message'>
-                        <p>{props.message.text}</p>
+                        <p>{ReactEmoji.emojify(props.message.text)}</p>
                     </div>
                     <div className='message-link-preview'>
 
