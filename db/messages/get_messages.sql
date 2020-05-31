@@ -1,0 +1,1 @@
+select u.user_name, u.profile_pic, p.post, p.time from posts as p join users as u on u.user_id = p.user_id where p.channel_id =$1;

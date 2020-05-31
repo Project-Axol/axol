@@ -18,7 +18,7 @@ function Category(props) {
   const channelsDisplay = channels.map((channel,i) => {
     return (
       <Link to={`/dashboard/${channel.channel_id}`} key={i}>
-      <Channel key={channel.channel_id} channel={channel}/>
+      <Channel key={channel.channel_id} channelName={channel.channel_name}/>
       </Link>
     )
   })

@@ -3,7 +3,7 @@ const session = require('express-session')
 const massive = require('massive')
 require('dotenv').config()
 const path = require('path')
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./socketHelpers/users')
+const { addUser, removeUser, getUser, getUsersInRoom, getRoom } = require('./socketHelpers/users')
 
 const app = express()
 const server = require('http').Server(app);
@@ -13,6 +13,7 @@ const usersCtrl = require('./controllers/usersController')
 const serverCtrl = require('./controllers/serverController')
 const categoryCtrl = require('./controllers/categoryController')
 const channelCtrl = require('./controllers/channelController')
+const messagesCtrl = require('./controllers/messagesController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -31,35 +32,35 @@ const timeDate = () => {
 }
 io.on('connection', (socket) => {
     // once a client has connected, we expect to get a ping from them saying what room they want to join
-    socket.on('join-room', ({ room, username, profilePic }, callback) => {
-        console.log("ROOOMMMMMMMOOOMMM: ", room)
-        const { user } = addUser({ id: socket.id, username, room: room, profilePic })
-        console.log('who got added: ', user)
+    socket.on('join-room', ({ room, username, profilePic, userId }, callback) => {
+        // console.log(userId, " : userId being sent in")
+        const { user } = addUser({ id: socket.id, username, room: room, profilePic, userId })
+            // console.log(user, " user added:", io.sockets.clients())
+        console.log(user, " user added:", io.sockets.adapter.rooms)
         socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.room}`, postTime: timeDate() })
         socket.broadcast.to(user.room).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.room}` })
         socket.join(user.room);
         io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
-            // callback()
+            // socket.emit('roomData', { users: getUsersInRoom(room) })
+
+        // callback()
     });
-    // socket.on('join', ({ username, group, profilePic }, callback) => {
-    //     console.log('incoming user: ', username, group)
-    //     const { user } = addUser({ id: socket.id, username, group, profilePic })
-    //     console.log('who got added: ', user)
-    //     socket.emit('message', { user: 'axol-bot', text: `${user.username}, welcome to ${user.group}` })
-    //     socket.broadcast.to(user.group).emit('message', { user: 'axol-bot', text: `${user.username}, joined ${user.group}` })
-    //     socket.join(user.group)
-    //     callback()
-    // })
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
-            // console.log('socket id messegint on: ', socket.id, 'user: ', user, 'message: ', message)
         io.to(user.room).emit('message', { user: user.username, profilePic: user.profilePic, text: message, postTime: timeDate() })
         io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
         callback()
     })
+    socket.on('getAllUsersInAllRoom', (room, callback) => {
+        socket.emit('channelData', { users: getUsersInRoom(room) })
+        callback()
+    })
     socket.on('disconnect', () => {
-        console.log('user had left')
+        const user = removeUser(socket.id);
+        if (user) {
+            // console.log('user had left')
+        }
     })
 })
 
@@ -77,6 +78,11 @@ app.get('/api/categories/:serverId', categoryCtrl.getCategories)
 
 app.post(`/api/channels/:categoryId`, channelCtrl.newChannel)
 app.get(`/api/channels/:categoryId`, channelCtrl.getChannels)
+    //get all current active users in each channel
+app.get(`/app/channels/:serverId`, channelCtrl.getActiveChannelUser)
+
+app.post(`/api/messages`, messagesCtrl.newMessage)
+app.get(`/api/messages/:channelId`, messagesCtrl.getMessages)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../client/build`));

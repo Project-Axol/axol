@@ -1,6 +1,12 @@
 const users = [];
-const addUser = ({ id, username, room, profilePic }) => {
-    const user = { id, username, room, profilePic }
+const addUser = ({ id, username, room, profilePic, userId }) => {
+    const existingUser = users.find((user) => user.room === room && user.userId === userId);
+    if (existingUser) {
+        return { user: existingUser }
+        // console.log(existingUser, s" existing user")
+
+    }
+    const user = { id, username, room, profilePic, userId }
     users.push(user)
     return { user }
 }
@@ -16,4 +22,12 @@ const getUser = (id) => users.find(user => user.id === id)
 
 const getUsersInRoom = (room) => users.filter(user => user.room === room)
 
-module.exports = { addUser, removeUser, getUser, getUsersInRoom }
+const getRoom = (room) => {
+    const usersInRoom = users.filter(user => user.room === room)
+    if (usersInRoom) {
+        return usersInRoom
+    }
+    return []
+}
+
+module.exports = { addUser, removeUser, getUser, getUsersInRoom, getRoom }
