@@ -5,7 +5,7 @@ const isObjectEmpty = (obj) => {
     return true
 }
 
-const Endpoint = 'http://localhost:3000/'
+const Endpoint = 'https://axol.herokuapp.com/'
 let socket;
 
 module.exports = { isObjectEmpty, Endpoint, socket }
