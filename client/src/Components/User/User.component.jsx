@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import util from '../../utils/util'
 import {useParams} from 'react-router-dom'
+import socket from '../../Sockets'
 
 import './user.styles.scss'
 
@@ -17,7 +18,7 @@ const User = (props) => {
     //     })
     // }, [id])
     useEffect(()=>{
-        util.socket.on('roomData', roomData =>{
+        socket.on('roomData', roomData =>{
             setRoomInfo(roomData.users)
             console.log(roomData, "room data::::::::users")
         })

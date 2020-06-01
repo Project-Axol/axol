@@ -6,6 +6,7 @@ import {withRouter, useParams} from 'react-router-dom'
 import Message from '../Message/Message.component'
 import TextField from '@material-ui/core/TextField'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import socket from '../../Sockets'
 
 import './messages.styles.scss'
 import Axios from 'axios'
@@ -17,33 +18,31 @@ const Messages = (props) =>{
     const Endpoint = util.Endpoint
     const serverid = props.serverReducer.server.server_id
     const user = props.userReducer.user
-    const [, updateState] = React.useState();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
     useEffect(()=>{
         Axios.get(`/api/messages/${id}`).then(res =>{
             setMessages(res.data)
         })
 
-        // forceUpdate()
+
         let room = `${props.dashType}-${id}`
-        util.socket = io(Endpoint)//, {transport : ['websocket'] })
-        util.socket.on('connect', function() {
+        // util.socket = io(Endpoint)//, {transport : ['websocket'] })
+        socket.on('connect', function() {
             // Connected, let's sign-up for to receive messages for this room
-            util.socket.emit('join-room', {username: user.user_name, profilePic:user.profile_pic,room:room, userId:user.user_id});
+            socket.emit('join-room', {username: user.user_name, profilePic:user.profile_pic,room:room, userId:user.user_id});
          });
         
         //socket closing when user leaves or component unmounts 
         return () =>{
             // console.log('component unmount')
-            util.socket.emit('disconnect')
-            util.socket.off()
+            socket.emit('disconnect')
+            socket.off()
         }
     },[Endpoint, id])
 
     //incoming messages 
 
     useEffect(()=>{
-        util.socket.on('message', message => {
+        socket.on('message', message => {
             setMessages(messages => [ ...messages, message ]);
           })
     },[id])
@@ -61,7 +60,7 @@ const Messages = (props) =>{
         }
         if(message){
             Axios.post(`/api/messages`, data)
-            util.socket.emit('sendMessage', message, () =>{
+            socket.emit('sendMessage', message, () =>{
                 setMessage('')
             })
 

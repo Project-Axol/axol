@@ -12,7 +12,7 @@ module.exports = {
             const [messageAdded] = await db.messages.add_new_message([userId, channelId, post, time])
             if (messageAdded) return res.sendStatus(200)
         }
-        res.sendStatus(300)
+        res.sendStatus(309)
     },
     getMessages: async(req, res) => {
         const db = req.app.get('db')

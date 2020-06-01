@@ -1,16 +1,10 @@
-import React, {useState } from 'react'
-import {useParams, withRouter} from 'react-router-dom'
-import { animateScroll } from "react-scroll";
+import React from 'react'
+import {withRouter} from 'react-router-dom'
 import Messages from '../Messages/Messages.component';
 
 import './post.styles.scss'
 
 const Posts = (props) => {
-    const scrollToBottom =()=> {
-        animateScroll.scrollToBottom({
-          containerId: "post-cont"
-        });
-    }
     return (
         <div className='post-container'>
             <Messages dashType='post'/>
