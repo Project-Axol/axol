@@ -42,3 +42,52 @@
     align-items: center;
     border-radius: 50%;
 }
+
+
+@media(min-width: 1025px){
+    .servers {
+        height: 100%;
+        width: 5vw;
+        background-color: $greyDark;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+    }
+    
+    .srvr-bttn {
+        height: 55px;
+        width: 55px;
+        margin-top: 15px;
+        background-color: $greyLight;
+        border-radius: 20%;
+        :hover {
+            background-color: $greyLightest;
+            border-radius: 20%;
+            cursor: pointer;
+        }
+    }
+    .server-icon-btn {
+        width: 100%;
+        height: 100%;
+    }
+    .find-btn-img {
+        height: 30px;
+        width: 30px;
+    }
+    .server-nav-find-btn {
+        padding: 10px 0;
+        margin-top: 15px;
+        background-color: $greyLight;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+
+}
+
+

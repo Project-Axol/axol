@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import useMedia from '../../hooks/useMedia'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
+import menuBtn from '../../assets/icons8-menu-384.png'
+import searchBtn from '../../assets/icons8-search-240.png'
 import logo from '../../assets/home-icon.svg'
 import addPeople from '../../assets/icons8-user-account-96.png'
 import hashtag from '../../assets/icons8-hashtag-100.png'
@@ -19,6 +22,9 @@ import Axios from 'axios'
 
 const Header = (props) => {
     let location = useLocation()
+    let mobile = useMedia('(max-width: 399px)')
+    let tablet = useMedia('(min-width: 400px)')
+    let desktop = useMedia('(min-width: 1025px)')
     let {server_id} = props.serverReducer.server
     const [popUp, togglePopUp] = useState(false)
     const [searchRes, setSearchRes]=useState([])
@@ -51,96 +57,129 @@ const Header = (props) => {
             </div>
         )
     })
-    return(
-        <div className='header-container'>
-            {popUp &&
-                <PopUp>
-                    <form onSubmit={handleAddUserToChannel}>
-                        <h1>Search Users</h1>
-                        <div className='crate-playlist-input-container'>
-                            <input placeholder='Username...' type="text" onChange={handleOnchange}/>
-                        </div>
-                        <div>
-                            {foundUsers}
-                        </div>
-                        <button onClick={()=>togglePopUp(!popUp)}>CANCEL</button>
-                        <button>CREATE PLAYLIST</button>
-                    </form>
-                </PopUp>
-            }
-            <div className='header-home-icon'>
-                <Link to='/dashboard/messages'>
-                    <IconButton className='header-logo'>
-                        <img src={logo} alt="logo"/>
-                    </IconButton>
-                </Link>
-            </div>
-            {
-                props.userReducer.isLoggedIn?
-                !location.pathname.includes('messages') ?
-                <React.Fragment>
-                    <div className='header-server-name'>
-                        <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
-                    </div>
-                    <div className='header-server-channel'>
-                        <div className='header-server-channel-left'>
-                            <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
-                        </div>
-                        <div className='header-server-channel-right'>
-                            <img className='add-people-button' src={addPeople} alt="add users"/>
 
-                        </div>
+    if(mobile){
+        return(
+            <div className='header-container-mobile'>
+                <div className='header-mobile-left'>
+                    <div className='header-mobile-menu-btn'>
+                        <img src={menuBtn} alt='menu-btn' />
                     </div>
-                    <div className='header-sign-out' >
-                        <div className='header-search-friends'>
-                        <TextField
-                            id='outlined-search-header'
-                            size='small'
-                            placeholder='Search Users'
-                            type='search'
-                            variant='outlined'
-                            />
-                        </div>
+                    <div className='header-channel-mobile'>
+                        <img src={hashtag} alt='hashtag' />
+                        <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                    </div>
+                </div>
+                <div className='header-mobile-right'>
+                    <div className='header-search-mobile'>
+                        <img src={searchBtn} alt='search-btn' />
+                    </div>
+                    <div className='header-signout-mobile'>
                         <Button size='small' onClick={logout}>Log Out</Button>
                     </div>
-                </React.Fragment> 
-                :
-                <React.Fragment>
-                    <div className='header-server-name'>
-                        <TextField id='outlined-conversations-header' type='search' variant='outlined' size='small' placeholder='Conversations'
-                        />
-                    </div>
-                    <div className='header-server-channel'>
-                        <div className='header-server-channel-left'>
-                            <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                </div>
+            </div>
+        )
+    } else if(tablet){
+        return(
+            <div className='header-container-tablet'>
+                Tablet Header
+            </div>
+            
+        )
+    } else if(desktop){
+        return(
+            <div className='header-container-desktop'>
+                {popUp &&
+                    <PopUp>
+                        <form onSubmit={handleAddUserToChannel}>
+                            <h1>Search Users</h1>
+                            <div className='crate-playlist-input-container'>
+                                <input placeholder='Username...' type="text" onChange={handleOnchange}/>
+                            </div>
+                            <div>
+                                {foundUsers}
+                            </div>
+                            <button onClick={()=>togglePopUp(!popUp)}>CANCEL</button>
+                            <button>CREATE PLAYLIST</button>
+                        </form>
+                    </PopUp>
+                }
+                <div className='header-home-icon'>
+                    <Link to='/dashboard/messages'>
+                        <IconButton className='header-logo'>
+                            <img src={logo} alt="logo"/>
+                        </IconButton>
+                    </Link>
+                </div>
+                {
+                    props.userReducer.isLoggedIn?
+                    !location.pathname.includes('messages') ?
+                    <React.Fragment>
+                        <div className='header-server-name'>
+                            <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                         </div>
-                        <div className='header-server-channel-right'>
-                            <img className='add-people-button' src={addPeople} alt="add users"/>
+                        <div className='header-server-channel'>
+                            <div className='header-server-channel-left'>
+                                <img className='header-hashtag' src={hashtag} alt='hashtag' />
+                                <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                            </div>
+                            <div className='header-server-channel-right'>
+                                <img className='add-people-button' src={addPeople} alt="add users"/>
+    
+                            </div>
                         </div>
-                    </div>
-                    <div className='header-sign-out' >
-                        <div className='header-search-friends'>
+                        <div className='header-sign-out' >
+                            <div className='header-search-friends'>
                             <TextField
-                            id='outlined-search-header'
-                            size='small'
-                            placeholder='Search Users'
-                            type='search'
-                            variant='outlined'
+                                id='outlined-search-header'
+                                size='small'
+                                placeholder='Search Users'
+                                type='search'
+                                variant='outlined'
+                                />
+                            </div>
+                            <Button size='small' onClick={logout}>Log Out</Button>
+                        </div>
+                    </React.Fragment> 
+                    :
+                    <React.Fragment>
+                        <div className='header-server-name'>
+                            <TextField id='outlined-conversations-header' type='search' variant='outlined' size='small' placeholder='Conversations'
                             />
                         </div>
-                        <Button onClick={logout}>Log Out</Button>
-                    </div>
-                </React.Fragment>
-                :
-                //not logged in
-                <React.Fragment>
-                    
-                </React.Fragment>
-            }
-        </div>
-    )
+                        <div className='header-server-channel'>
+                            <div className='header-server-channel-left'>
+                                <img className='header-hashtag' src={hashtag} alt='hashtag' />
+                                <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                            </div>
+                            <div className='header-server-channel-right'>
+                                <img className='add-people-button' src={addPeople} alt="add users"/>
+                            </div>
+                        </div>
+                        <div className='header-sign-out' >
+                            <div className='header-search-friends'>
+                                <TextField
+                                id='outlined-search-header'
+                                size='small'
+                                placeholder='Search Users'
+                                type='search'
+                                variant='outlined'
+                                />
+                            </div>
+                            <Button onClick={logout}>Log Out</Button>
+                        </div>
+                    </React.Fragment>
+                    :
+                    //not logged in
+                    <React.Fragment>
+                        
+                    </React.Fragment>
+                }
+            </div>
+        )
+
+    }
 }
 
 const MapStateToProps = state =>{
