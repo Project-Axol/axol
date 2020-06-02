@@ -25,15 +25,15 @@ const Header = (props) => {
     const [popUp, togglePopUp] = useState(false)
     const [dmName, setDmNam] = useState('')
 
-    useEffect(()=>{
-        console.log('triggered...', props.match)
-        if(location.pathname.includes('messages')){
-            Axios.get(`/api/dmNames/${id}`).then(res =>{
-                console.log(res.data, " : dmName")
-                setDmNam(res.data.dmg_name)
-            })
-        }
-    }, [location.pathname,id])
+    // useEffect(()=>{
+    //     console.log('triggered...', props.match)
+    //     if(location.pathname.includes('messages')){
+    //         Axios.get(`/api/dmNames/${id}`).then(res =>{
+    //             console.log(res.data, " : dmName")
+    //             setDmNam(res.data.dmg_name)
+    //         })
+    //     }
+    // }, [location.pathname,id])
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()
