@@ -32,5 +32,13 @@ module.exports = {
             return res.status(200).send(msgs)
         }
         res.status(200).send(dmMessages)
+    },
+    getDMName: async(req, res) => {
+        const db = req.app.get('db')
+        const { dmId } = req.params
+        console.log('dmId is : ', dmId)
+        const [dm] = await db.dms.get_dm_name(+dmId)
+        res.status(200).send(dm)
+
     }
 }

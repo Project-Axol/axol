@@ -50,6 +50,7 @@ app.get(`/api/messages/:channelId`, messagesCtrl.getMessages)
 app.post(`/api/conversations`, dmCtrl.newDmIfNotExist)
 app.get(`/api/conversations/:user_id`, dmCtrl.getConversations)
 app.get(`/api/dmMessages/:dmId`, dmCtrl.getDMmessages)
+app.get(`/api/dmNames/:dmId`, dmCtrl.getDMName)
 
 
 if (process.env.NODE_ENV === 'production') {
