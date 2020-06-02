@@ -69,7 +69,7 @@ const Header = (props) => {
                 </PopUp>
             }
             <div className='header-home-icon'>
-                <Link to='/dashboard/messages'>
+                <Link to='/messages'>
                     <IconButton className='header-logo'>
                         <img src={logo} alt="logo"/>
                     </IconButton>
