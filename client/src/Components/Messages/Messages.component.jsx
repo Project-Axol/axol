@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import util from '../../utils/util.js'
 import io from 'socket.io-client'
 import {connect} from 'react-redux'
-import {withRouter, useParams} from 'react-router-dom'
+import {withRouter, useParams, useLocation} from 'react-router-dom'
 import Message from '../Message/Message.component'
 import TextField from '@material-ui/core/TextField'
 import ScrollToBottom from 'react-scroll-to-bottom'
@@ -13,15 +13,22 @@ import Axios from 'axios'
 // let socket;
 const Messages = (props) =>{
     const {id} = useParams()
+    const location = useLocation()
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
     const Endpoint = util.Endpoint
     const serverid = props.serverReducer.server.server_id
     const user = props.userReducer.user
     useEffect(()=>{
-        Axios.get(`/api/messages/${id}`).then(res =>{
-            setMessages(res.data)
-        })
+        if(location.pathname.includes('messages')){
+            Axios.get(`/api/dmMessages/${id}`).then(res =>{
+                setMessages(res.data)
+            })
+        }else{
+            Axios.get(`/api/messages/${id}`).then(res =>{
+                setMessages(res.data)
+            })
+        }
 
 
         let room = `${props.dashType}-${id}`
@@ -59,7 +66,9 @@ const Messages = (props) =>{
             from:props.dashType,
         }
         if(message){
-            Axios.post(`/api/messages`, data)
+            
+                Axios.post(`/api/messages`, data)
+            
             socket.emit('sendMessage', message, () =>{
                 setMessage('')
             })

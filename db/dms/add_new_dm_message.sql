@@ -1,0 +1,1 @@
+insert into direct_messages (user_id, dmg_id, message, time) values ($1,$2,$3,$4) returning *;

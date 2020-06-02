@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
@@ -12,16 +12,24 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import PopUp from '../Popup/PopUp.component'
+import SearchUser from '../SeachUser/Search.component'
 
 import './header.styels.scss'
-import PopUp from '../Popup/PopUp.component'
 import Axios from 'axios'
 
 const Header = (props) => {
     let location = useLocation()
     let {server_id} = props.serverReducer.server
     const [popUp, togglePopUp] = useState(false)
-    const [searchRes, setSearchRes]=useState([])
+    // const [searchRes, setSearchRes]=useState([])
+    // const [searchStr, setSearchStr]=useState('')
+    // useEffect(()=>{
+    //     Axios.get(`/api/users?username=${encodeURI(searchStr)}`).then(res => {
+    //         setSearchRes(res.data)
+    //     }).catch(()=>setSearchRes([]))
+
+    // }, [searchStr])
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()
@@ -37,35 +45,24 @@ const Header = (props) => {
 
         })
     }
-    const handleOnchange = (e) =>{
-        Axios.get(`/api/users?username=${e.target.value}`).then(res => {
-            setSearchRes(res.data)
-        }).catch(()=>alert('Something went wrong searching for user'))
-    }
-    const foundUsers = searchRes.map((user, i) => {
-        return (
-            <div key={i} onClick={()=>handleAddUserToChannel({user})}>
-                <div className='search-user-img'>
-                    <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile Picture"/>
-                </div>
-            </div>
-        )
-    })
+    // const handleOnchange = (e) =>{
+    //     setSearchStr(e.target.value)
+    // }
+    // const foundUsers = searchRes.map((user, i) => {
+    //     return (
+    //         <div key={i} onClick={()=>handleAddUserToChannel({user})}>
+    //             <div className='search-user-img'>
+    //                 <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile Picture"/>
+    //                 <p>{user.user_name}</p>
+    //             </div>
+    //         </div>
+    //     )
+    // })
     return(
         <div className='header-container'>
             {popUp &&
-                <PopUp>
-                    <form onSubmit={handleAddUserToChannel}>
-                        <h1>Search Users</h1>
-                        <div className='crate-playlist-input-container'>
-                            <input placeholder='Username...' type="text" onChange={handleOnchange}/>
-                        </div>
-                        <div>
-                            {foundUsers}
-                        </div>
-                        <button onClick={()=>togglePopUp(!popUp)}>CANCEL</button>
-                        <button>CREATE PLAYLIST</button>
-                    </form>
+                <PopUp modalState={popUp}>
+                    <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleAddUserToChannel}/>
                 </PopUp>
             }
             <div className='header-home-icon'>
@@ -88,7 +85,7 @@ const Header = (props) => {
                             <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
                         </div>
                         <div className='header-server-channel-right'>
-                            <img className='add-people-button' src={addPeople} alt="add users"/>
+                            <img className='add-people-button' src={addPeople} alt="add users" onClick={()=>togglePopUp(!popUp)}/>
 
                         </div>
                     </div>
@@ -114,7 +111,7 @@ const Header = (props) => {
                     <div className='header-server-channel'>
                         <div className='header-server-channel-left'>
                             <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                            <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                            <Typography className='header-channel-name' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                         </div>
                         <div className='header-server-channel-right'>
                             <img className='add-people-button' src={addPeople} alt="add users"/>
