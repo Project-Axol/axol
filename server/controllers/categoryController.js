@@ -5,7 +5,7 @@ module.exports = {
     const {categoryName} = req.body
 
     await db.category.new_category([categoryName, serverId])
-
+    
     res.sendStatus(200)
   },
 

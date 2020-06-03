@@ -1,7 +1,7 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
 import useMedia from '../../hooks/useMedia'
-import greenIcon from '../../assets/green-icon.svg'
+import pinkCircleIcon from '../../assets/pink-circle-icon.svg'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Messages from '../Messages/Messages.component';
@@ -19,20 +19,10 @@ const DirectMessages = (props) =>{
         return (
             <div className='dm-container-mobile'>
                 {!id?
-                <div>
-                    <div className='dm-no-messages'>
-                        <img src={greenIcon} alt="noMessages"/>
-                        <Typography variant='h3'>No Messages...</Typography>
-                    </div>
-                    <div className='dashboard-message-input'>
-                        <TextField
-                        id='outlined-message-input'
-                        size='small'
-                        placeholder='Message...'
-                        fullWidth
-                        variant='outlined'
-                        />
-                    </div>
+                <div className='dm-no-messages'>
+                    <img src={pinkCircleIcon} alt="noMessages"/>
+                    <br />
+                    <Typography variant='h4' color='textSecondary' className='no-conversation-message'>No conversation selected... </Typography>
                 </div>:
                 <Messages dashType='dm'/>
                 }
@@ -40,22 +30,12 @@ const DirectMessages = (props) =>{
         )
     } else if (tablet){
         return (
-            <div className='dm-container-tablet'>
+            <div className='dm-container-mobile'>
                 {!id?
-                <div>
-                    <div className='dm-no-messages'>
-                        <img src={greenIcon} alt="noMessages"/>
-                        <Typography variant='h3'>No Messages...</Typography>
-                    </div>
-                    <div className='dashboard-message-input'>
-                        <TextField
-                        id='outlined-message-input'
-                        size='small'
-                        placeholder='Message...'
-                        fullWidth
-                        variant='outlined'
-                        />
-                    </div>
+                <div className='dm-no-messages'>
+                    <img src={pinkCircleIcon} alt="noMessages"/>
+                    <br />
+                    <Typography variant='h4' color='textSecondary' className='no-conversation-message'>No conversation selected... </Typography>
                 </div>:
                 <Messages dashType='dm'/>
                 }
@@ -63,22 +43,12 @@ const DirectMessages = (props) =>{
         )
     } else if (desktop) {
         return (
-            <div className='dm-container-desktop'>
+            <div className='dm-container-mobile'>
                 {!id?
-                <div>
-                    <div className='dm-no-messages'>
-                        <img src={greenIcon} alt="noMessages"/>
-                        <Typography variant='h3'>No Messages...</Typography>
-                    </div>
-                    <div className='dashboard-message-input'>
-                        <TextField
-                        id='outlined-message-input'
-                        size='small'
-                        placeholder='Message...'
-                        fullWidth
-                        variant='outlined'
-                        />
-                    </div>
+                <div className='dm-no-messages'>
+                    <img src={pinkCircleIcon} alt="noMessages"/>
+                    <br />
+                    <Typography variant='h4' color='textSecondary' className='no-conversation-message'>No conversation selected... </Typography>
                 </div>:
                 <Messages dashType='dm'/>
                 }

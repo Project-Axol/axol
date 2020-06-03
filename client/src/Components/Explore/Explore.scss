@@ -30,13 +30,13 @@
     display: flex;
     background-color: $greyLight;
     flex-direction: column;
+    justify-content: center;
     flex-wrap: wrap;
     .explore-results {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
+      flex-direction: row;
       justify-content: center;
-      align-content: space-evenly;
       overflow: scroll;
     }
   }
@@ -93,13 +93,13 @@
     display: flex;
     background-color: $greyLight;
     flex-direction: column;
+    justify-content: center;
     flex-wrap: wrap;
     .explore-results {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       justify-content: center;
-      align-content: space-evenly;
       overflow: scroll;
     }
   }
@@ -152,26 +152,24 @@
   
   .explore-results-container {
     height: 75%;
-    width: 100vw;
+    width: 100%;
     display: flex;
-    background-color: $greyLight;
     flex-direction: column;
-    flex-wrap: wrap;
+    background-color: $greyLight;
+    justify-content: center;
     .explore-results {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       justify-content: center;
-      align-content: space-evenly;
       overflow: scroll;
     }
   }
   
   .server-tile {
     display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 300px;
+    width: 350px;
+    height: 250px;
     margin: 30px;
   }
   
