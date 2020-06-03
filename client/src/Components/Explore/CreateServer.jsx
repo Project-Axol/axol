@@ -1,10 +1,17 @@
 import React from 'react'
+import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {selectServer} from '../../ducks/serverReducer'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-function CreateServer() {
+function CreateServer(props) {
+  const {serverName} = props
+  const {user} = props.userReducer
+
   return (
     <React.Fragment>
       <Paper 
@@ -26,7 +33,17 @@ function CreateServer() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Button variant='outlined'>Create</Button>
+            <Button
+              variant='outlined'
+              onClick={() => {
+                axios.post(`/api/servers/${user.user_id}`, {serverName: serverName})
+                .then(res => {
+                  props.selectServer(res.data.server_id)
+                  props.history.push('/dashboard')
+                })
+                .catch(err => console.log(err))
+              }}
+            >Create</Button>
           </Grid>
         </Grid>
       </Paper>
@@ -37,4 +54,6 @@ function CreateServer() {
   )
 }
 
-export default CreateServer
+const mapStateToProps = state => state
+
+export default connect(mapStateToProps, {selectServer})(withRouter(CreateServer))

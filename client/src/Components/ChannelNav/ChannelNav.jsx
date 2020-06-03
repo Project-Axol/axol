@@ -32,9 +32,9 @@ function ChannelNav(props){
 
   const categoryDisplay = categories.map((category, i) => {
     return (
-      <List component='nav' >
+      <List component='nav' key={category.category_id} >
         
-            <Category key={category.category_id} category={category} />
+            <Category category={category} />
         
       </List>
     )

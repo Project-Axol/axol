@@ -59,7 +59,7 @@ function Explore() {
         ) : (
           !searches[0] ? (
             <React.Fragment>
-              <CreateServer />
+              <CreateServer serverName={search} />
             </React.Fragment>
           ) : (
           <React.Fragment>

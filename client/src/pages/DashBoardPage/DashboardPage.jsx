@@ -12,6 +12,7 @@ import './dashboard.styles.scss'
 
 const DashboardPage = (props) =>{
     let location = useLocation()
+
     return(
         <div className='dashboard-container'>
             <ServerNav />

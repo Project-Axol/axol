@@ -2,7 +2,8 @@ module.exports = {
     newServer: async(req, res) => {
         const db = req.app.get('db')
         const { userId } = req.params
-        const { serverName, serverImg, private, password } = req.body
+        const { serverName } = req.body
+        const private = true
 
         const [existing] = await db.server.check_server([serverName])
 
@@ -10,8 +11,10 @@ module.exports = {
             return res.status(400).send('Server name taken')
         }
 
-        const [{ server_id }] = await db.server.new_server([serverName, userId, serverImg, private, password])
+        const [{ server_id }] = await db.server.new_server([serverName, userId, private])
         await db.server.new_server_user([userId, server_id])
+        const [category] = await db.category.new_category(['general', server_id])
+        await db.channel.new_channel([category.category_id, 'general'])
         const [server] = await db.server.get_server([server_id])
 
         res.status(200).send(server)
