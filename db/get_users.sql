@@ -1,0 +1,1 @@
+select * from users where LOWER(user_name) like LOWER($1);

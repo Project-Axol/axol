@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useMedia from '../../hooks/useMedia'
 import { useTheme } from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
-import {withRouter, useLocation, Link} from 'react-router-dom'
+import {withRouter, useLocation, Link, useParams} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 
 import menuBtn from '../../assets/icons8-menu-384.png'
@@ -23,6 +23,7 @@ import ChannelNav from '../ChannelNav/ChannelNav'
 
 import './headerStyles.scss'
 import PopUp from '../Popup/PopUp.component'
+import SearchUser from '../SearchUser/Search.component'
 import Axios from 'axios'
 import { findByLabelText } from '@testing-library/react'
 
@@ -31,15 +32,26 @@ const Header = (props) => {
 
     const theme = useTheme()
 
-    let mobile = useMedia('(max-width: 399px)')
+    let mobile = useMedia('(max-width: 400px)')
     let tablet = useMedia('(max-width: 1025px)')
     let desktop = useMedia('(max-width: 5000px)')
 
     const [sideBarDrawerVisible, setSideBarDrawerVisible] = useState(false)
 
+    const {id} = useParams()
     let {server_id} = props.serverReducer.server
     const [popUp, togglePopUp] = useState(false)
-    const [searchRes, setSearchRes]=useState([])
+    const [dmName, setDmName] = useState('')
+
+    // useEffect(()=>{
+    //     console.log('triggered...', props.match)
+    //     if(location.pathname.includes('messages')){
+    //         Axios.get(`/api/dmNames/${id}`).then(res =>{
+    //             console.log(res.data, " : dmName")
+    //             setDmNam(res.data.dmg_name)
+    //         })
+    //     }
+    // }, [location.pathname,id])
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()
@@ -55,20 +67,6 @@ const Header = (props) => {
 
         })
     }
-    const handleOnchange = (e) =>{
-        Axios.get(`/api/users?username=${e.target.value}`).then(res => {
-            setSearchRes(res.data)
-        }).catch(()=>alert('Something went wrong searching for user'))
-    }
-    const foundUsers = searchRes.map((user, i) => {
-        return (
-            <div key={i} onClick={()=>handleAddUserToChannel({user})}>
-                <div className='search-user-img'>
-                    <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile Picture"/>
-                </div>
-            </div>
-        )
-    })
 
     if(mobile){
         return(
@@ -146,22 +144,12 @@ const Header = (props) => {
         return(
             <div className='header-container-desktop'>
                 {popUp &&
-                    <PopUp>
-                        <form onSubmit={handleAddUserToChannel}>
-                            <h1>Search Users</h1>
-                            <div className='crate-playlist-input-container'>
-                                <input placeholder='Username...' type="text" onChange={handleOnchange}/>
-                            </div>
-                            <div>
-                                {foundUsers}
-                            </div>
-                            <button onClick={()=>togglePopUp(!popUp)}>CANCEL</button>
-                            <button>CREATE PLAYLIST</button>
-                        </form>
+                    <PopUp modalState={popUp}>
+                        <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleAddUserToChannel}/>
                     </PopUp>
                 }
                 <div className='header-home-icon'>
-                    <Link to='/dashboard/messages'>
+                    <Link to='/messages'>
                         <IconButton className='header-logo'>
                             <img src={logo} alt="logo"/>
                         </IconButton>
@@ -177,11 +165,10 @@ const Header = (props) => {
                         <div className='header-server-channel'>
                             <div className='header-server-channel-left'>
                                 <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                                <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                                <Typography className='header-channel-name' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                             </div>
                             <div className='header-server-channel-right'>
-                                <img className='add-people-button' src={addPeople} alt="add users"/>
-    
+                                <img className='add-people-button' src={addPeople} alt="add users" onClick={() => togglePopUp(!popUp)}/>
                             </div>
                         </div>
                         <div className='header-sign-out' >
@@ -206,7 +193,7 @@ const Header = (props) => {
                         <div className='header-server-channel'>
                             <div className='header-server-channel-left'>
                                 <img className='header-hashtag' src={hashtag} alt='hashtag' />
-                                <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                                <Typography className='header-channel-name' variant='h6'>{dmName}</Typography>
                             </div>
                             <div className='header-server-channel-right'>
                                 <img className='add-people-button' src={addPeople} alt="add users"/>

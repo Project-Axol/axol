@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import useMedia from '../../hooks/useMedia'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './ServerNav.scss'
 import { selectServer, userServers } from '../../ducks/serverReducer'
@@ -36,6 +36,7 @@ function ServerNav(props){
         className='srvr-bttn'
         onClick={() => {
           props.selectServer(server)
+          props.history.push('/dashboard')
         }}
         >
           <div className='server-icon-btn'>Hi</div>
@@ -102,4 +103,4 @@ function ServerNav(props){
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {selectServer, userServers})(ServerNav)
+export default connect(mapStateToProps, {selectServer, userServers})(withRouter(ServerNav))
