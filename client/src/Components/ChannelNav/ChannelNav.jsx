@@ -4,7 +4,9 @@ import Category from './Category'
 import {connect} from 'react-redux'
 import {withRouter, useLocation, Link} from 'react-router-dom'
 import PopUp from '../Popup/PopUp.component'
-import SearchUser from '../SeachUser/Search.component'
+import SearchUser from '../SearchUser/Search.component'
+
+import useMedia from '../../hooks/useMedia'
 
 import List from '@material-ui/core/List'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -20,6 +22,10 @@ function ChannelNav(props){
   const [conversations, setConversations] = useState([])
   const [popUp, togglePopUp] = useState(false)
   
+
+  let mobile = useMedia('(max-width: 399px)')
+  let tablet = useMedia('(max-width: 1025px)')
+  let desktop = useMedia('(max-width: 5000px)')
 
   const initialLogin = () => {
     server_id = 0
@@ -77,8 +83,9 @@ function ChannelNav(props){
     )
   })
 
-  return (
-    <section className='channel-nav'>
+  if(mobile){
+    return (
+      <section className='channel-nav-mobile'>
       {popUp &&
         <PopUp modalState={popUp}>
             <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
@@ -93,7 +100,44 @@ function ChannelNav(props){
           categoryDisplay : <section>Friend list</section>}
       <div className='chnl-usr'></div>
     </section>
-  )
+    )
+  } else if(tablet){
+    return (
+      <section className='channel-nav'>
+      {popUp &&
+        <PopUp modalState={popUp}>
+            <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
+        </PopUp>
+      }
+      {location.pathname.includes('messages') ?
+          <React.Fragment>
+            <p onClick={()=>togglePopUp(!popUp)}>Start a new conversation</p>
+            {userConversations}
+          </React.Fragment>:
+          server_id>0?
+          categoryDisplay : <section>Friend list</section>}
+      <div className='chnl-usr'></div>
+    </section>
+    )
+  } else if(desktop){
+    return (
+      <section className='channel-nav'>
+      {popUp &&
+        <PopUp modalState={popUp}>
+            <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
+        </PopUp>
+      }
+      {location.pathname.includes('messages') ?
+          <React.Fragment>
+            <p onClick={()=>togglePopUp(!popUp)}>Start a new conversation</p>
+            {userConversations}
+          </React.Fragment>:
+          server_id>0?
+          categoryDisplay : <section>Friend list</section>}
+      <div className='chnl-usr'></div>
+    </section>
+    )
+  }
 }
 
 const mapStateToProps = state => state

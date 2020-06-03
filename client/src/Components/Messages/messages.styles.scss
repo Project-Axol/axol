@@ -1,5 +1,5 @@
 @import '../../utils/styles.util.scss';
-.messages-container {
+.messages-container-mobile {
     width: 100%;
     height: 100%;
     display: flex;
@@ -17,5 +17,48 @@
         padding: 15px;
         display: flex;
         align-items: flex-end;
+        margin-bottom: 50px;
+    }
+}
+.messages-container-tablet {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .messages-messages {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+    .dashboard-message-input {
+        height: 100px;
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 50px;
+    }
+}
+.messages-container-desktop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .messages-messages {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+    }
+    .dashboard-message-input {
+        height: 100px;
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 15px;
     }
 }

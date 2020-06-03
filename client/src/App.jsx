@@ -52,14 +52,14 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="App">
-          {this.props.userReducer.isLoggedIn? <div className='header'>
+          {this.props.userReducer.isLoggedIn?
             <Header />
-          </div> : null }
+           : null }
           <div className='main-content'>
             {router}
-            <div>
+            {/* <div>
             {this.props.userReducer.isLoggedIn? <p onClick={()=>auth.signOut().then(()=>this.props.history.push('/'))}>Logout</p> : <p>Please log in to continue</p>}
-            </div>
+            </div> */}
           </div>
         </div>
       </ThemeProvider>
@@ -95,6 +95,13 @@ const theme = createMuiTheme({
         onMouseUp: {
           colorPrimary: '#e28489'
         }
+      }
+    },
+    MuiDrawer: {
+      root: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap'
       }
     }
   },

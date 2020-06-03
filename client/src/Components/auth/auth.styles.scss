@@ -2,13 +2,42 @@
 
 .grid-logo {
     img {
-        width: 300px;
+        width: 80%;
         height: auto
     }
 }
 .strong-link {
     &:hover {
         cursor: pointer
+    }
+}
+.google-login-container {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 30px;
+    height: auto;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .google-login-button{
+        width: 35%;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border: none;
+        :hover{
+            cursor: pointer;
+        }
+        img {
+            display: flex;
+            height: 40px;
+        }
     }
 }
 

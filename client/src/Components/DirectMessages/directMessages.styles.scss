@@ -1,18 +1,80 @@
 @import '../../utils/styles.util.scss';
-.dm-container {
+.dm-container-mobile {
     width: 100%;
     height: 100%;
-    padding: 20px;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: $greyLighter;
-    // box-shadow: 0px -4px 11px 2px rgba(0, 0, 0, 0.75);
     .dm-no-messages {
-        width: 500px;
-        height: 400px;
-        position: absolute;
-        top: 10%;
-        left: 20%;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -200px;
         img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .dashboard-message-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+.dm-container-tablet {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $greyLighter;
+    .dm-no-messages {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -200px;
+        img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.dm-container-desktop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $greyLighter;
+    .dm-no-messages {
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: -200px;
+        img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             height: 100%;
         }

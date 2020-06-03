@@ -17,7 +17,7 @@ const SearchUser = (props) => {
         return (
             <div key={i} onClick={()=>props.handleAddUser(user)}>
                 <div className='search-user-img'>
-                    <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile Picture"/>
+                    <img src={user.profile_pic || `https://robohash.org/${user.user_id}`} alt="profile-img"/>
                     <p>{user.user_name}</p>
                 </div>
             </div>

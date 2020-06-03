@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core'
 
 import fontLogo from '../../assets/axol-auth-logo.svg'
+import googleSignInBtn from '../../assets/btn_google_signin_dark_pressed_web@2x.png'
 import './auth.styles.scss'
 
 class Auth extends Component{
@@ -123,13 +124,21 @@ class Auth extends Component{
                             </Button>
                         </Grid>
                         <Grid item xs={12} className='grid-button'>
-                            <Button 
+                            {/* <Button 
                             className='modal-login-button'
                             variant="contained" 
                             color="primary" 
                             onClick={signInWithGoogle}>
                                 Sign In With GOOGLE
-                            </Button>
+                            </Button> */}
+                            <div className='google-login-container'>
+                                <button 
+                                className='google-login-button'
+                                onClick={signInWithGoogle}
+                                >
+                                    <img src={googleSignInBtn} alt='google-sign-in-button' />
+                                </button>
+                            </div>
                         </Grid>
                     </Grid>
                     :
@@ -189,9 +198,14 @@ class Auth extends Component{
                             <Button type='submit' variant="contained" color='primary' onClick={this.handleSignUpSubmit}> Sign Up</Button>
                         </Grid>
                         <Grid item xs={12} className='grid-signup-with-google'>
-                            <Button variant="contained" color="primary" onClick={signInWithGoogle}>
-                                Sign Up With GOOGLE
-                            </Button>
+                            <div className='google-login-container'>
+                                <button 
+                                className='google-login-button'
+                                onClick={signInWithGoogle}
+                                >
+                                    <img src={googleSignInBtn} alt='google-sign-in-button' />
+                                </button>
+                            </div>
                         </Grid>
                     </Grid>
                 }
