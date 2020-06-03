@@ -9,7 +9,8 @@ export default(
         <Route exact path='/' component={LandingPage}/>
         <Route exact path='/dashboard' component={DashboardPage}/>
         <Route exact path='/dashboard/:id' component={DashboardPage}/>
-        <Route exact path='/dashboard/messages' component={DashboardPage}/>
+        <Route exact path='/messages' component={DashboardPage}/>
+        <Route exact path='/messages/:id' component={DashboardPage}/>
         <Route exact path='/explore' component={ExplorePage}/>
     </Switch>
 ) 

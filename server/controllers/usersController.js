@@ -12,10 +12,16 @@ module.exports = {
         if (!addUser) return res.sendStatus(500)
         res.status(200).send(addUser)
     },
-    
+
     getUsers: async(req, res) => {
         const db = req.app.get('db')
-
-        res.sendStatus(300)
+        const { username } = req.query
+        if (!username) return res.status(200).send([])
+        console.log(username)
+        const usrName = `${username}%`
+        const users = await db.get_users(usrName)
+        console.log(usrName)
+        console.log(users)
+        res.status(200).send(users)
     }
 }

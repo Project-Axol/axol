@@ -11,6 +11,9 @@ module.exports = {
         if (from === 'post') {
             const [messageAdded] = await db.messages.add_new_message([userId, channelId, post, time])
             if (messageAdded) return res.sendStatus(200)
+        } else {
+            const [messageAdded] = await db.dms.add_new_dm_message([userId, channelId, post, time])
+            if (messageAdded) return res.sendStatus(200)
         }
         res.sendStatus(309)
     },

@@ -1,30 +1,90 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useParams} from 'react-router-dom'
+import useMedia from '../../hooks/useMedia'
+import greenIcon from '../../assets/green-icon.svg'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Messages from '../Messages/Messages.component';
 
 import './directMessages.styles.scss'
 
 const DirectMessages = (props) =>{
-    const [messages, setMessages] = useState([])
-    const {dmId} = useParams()
-    useEffect(()=>{
-        if(dmId){
-            //axios request to get posts for the channel
-        }
-    },[])
+    const {id} = useParams()
 
-    return (
-        <div className='dm-container'>
-            {messages.length?
+    let mobile = useMedia('(max-width: 399px)')
+    let tablet = useMedia('(max-width: 1025px)')
+    let desktop = useMedia('(max-width: 5000px)')
+
+    if(mobile){
+        return (
+            <div className='dm-container-mobile'>
+                {!id?
                 <div>
-                    <h1>Yaaayyy there are some messages</h1>
+                    <div className='dm-no-messages'>
+                        <img src={greenIcon} alt="noMessages"/>
+                        <Typography variant='h3'>No Messages...</Typography>
+                    </div>
+                    <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        />
+                    </div>
                 </div>:
-                <div className='dm-no-messages'>
-                    <img src="https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80" alt=""/>
-                    <h1>NO Messages...</h1>
-                </div>
-            }
-        </div>
-    )
+                <Messages dashType='dm'/>
+                }
+            </div>
+        )
+    } else if (tablet){
+        return (
+            <div className='dm-container-tablet'>
+                {!id?
+                <div>
+                    <div className='dm-no-messages'>
+                        <img src={greenIcon} alt="noMessages"/>
+                        <Typography variant='h3'>No Messages...</Typography>
+                    </div>
+                    <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        />
+                    </div>
+                </div>:
+                <Messages dashType='dm'/>
+                }
+            </div>
+        )
+    } else if (desktop) {
+        return (
+            <div className='dm-container-desktop'>
+                {!id?
+                <div>
+                    <div className='dm-no-messages'>
+                        <img src={greenIcon} alt="noMessages"/>
+                        <Typography variant='h3'>No Messages...</Typography>
+                    </div>
+                    <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        />
+                    </div>
+                </div>:
+                <Messages dashType='dm'/>
+                }
+            </div>
+        )
+    }
 }
 
 export default DirectMessages

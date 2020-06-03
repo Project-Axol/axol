@@ -15,6 +15,7 @@ const categoryCtrl = require('./controllers/categoryController')
 const channelCtrl = require('./controllers/channelController')
 const messagesCtrl = require('./controllers/messagesController')
 const socketCtrl = require('./controllers/socketController')
+const dmCtrl = require('./controllers/directMessagesController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -27,7 +28,7 @@ app.use(session({
 }))
 
 app.post('/api/users', usersCtrl.validateAdduser)
-app.get('/api/userss', usersCtrl.getUsers)
+app.get('/api/users', usersCtrl.getUsers)
 
 app.post('/api/servers/:userId', serverCtrl.newServer)
 app.get('/api/servers/:userId', serverCtrl.getServers)
@@ -42,9 +43,15 @@ app.post(`/api/channels/:categoryId`, channelCtrl.newChannel)
 app.get(`/api/channels/:categoryId`, channelCtrl.getChannels)
     //get all current active users in each channel
 app.get(`/app/channels/:serverId`, channelCtrl.getActiveChannelUser)
-
+    //posts
 app.post(`/api/messages`, messagesCtrl.newMessage)
 app.get(`/api/messages/:channelId`, messagesCtrl.getMessages)
+    //dms
+app.post(`/api/conversations`, dmCtrl.newDmIfNotExist)
+app.get(`/api/conversations/:user_id`, dmCtrl.getConversations)
+app.get(`/api/dmMessages/:dmId`, dmCtrl.getDMmessages)
+app.get(`/api/dmNames/:dmId`, dmCtrl.getDMName)
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../client/build`));
