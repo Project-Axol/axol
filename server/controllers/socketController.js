@@ -1,4 +1,4 @@
-const { addUser, removeUser, getUser, getUsersInRoom, getRoom } = require('../socketHelpers/users')
+const { addUser, removeUser, getUser, getUsersInRoom, getRoom, getUserIds } = require('../socketHelpers/users')
 const timeDate = () => {
     let today = new Date()
     return today
@@ -24,6 +24,13 @@ module.exports = {
             const user = getUser(socket.id)
             io.to(user.room).emit('message', { user: user.username, profilePic: user.profilePic, text: message, postTime: timeDate() })
             io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
+            callback()
+        })
+        socket.on('sendDM', (message, callback) => {
+            const user = getUser(socket.id)
+            console.log(user)
+            const allUserIdsInRoom = getUserIds(user.room, user.userId)
+            io.to(user.room).emit('dmMessage', { user: user.username, profilePic: user.profilePic, text: message, postTime: timeDate(), allUsers: allUserIdsInRoom })
             callback()
         })
         socket.on('getAllUsersInAllRoom', (room, callback) => {

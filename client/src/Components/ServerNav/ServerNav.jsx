@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import logo from '../../assets/home-icon.svg'
 import findServerButton from '../../assets/icons8-compass-96.png'
+import socket from '../../Sockets'
 
 function ServerNav(props){
   const {servers} = props.serverReducer
@@ -26,6 +27,9 @@ function ServerNav(props){
     .catch(err => {
       console.log(err)
     })
+    socket.on('dmMessage', message => {
+      console.log(message, " new message for")
+   })
   }, [])
 
   const serverDisplay = servers.map(server => { 

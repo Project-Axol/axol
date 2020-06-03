@@ -26,7 +26,7 @@ const Messages = (props) =>{
     const serverid = props.serverReducer.server.server_id
     const user = props.userReducer.user
     useEffect(()=>{
-        if(location.pathname.includes('messages')){
+        if(location.pathname.includes('messages') && id){
             Axios.get(`/api/dmMessages/${id}`).then(res =>{
                 setMessages(res.data)
             })
@@ -55,9 +55,15 @@ const Messages = (props) =>{
     //incoming messages 
 
     useEffect(()=>{
-        socket.on('message', message => {
-            setMessages(messages => [ ...messages, message ]);
-          })
+        if(location.pathname.includes('messages')){
+            socket.on('dmMessage', message => {
+               setMessages(messages => [ ...messages, message ]);
+            })
+        }else{
+            socket.on('message', message => {
+               setMessages(messages => [ ...messages, message ]);
+            })
+        }
     },[id])
 
     //send message
@@ -72,13 +78,16 @@ const Messages = (props) =>{
             from:props.dashType,
         }
         if(message){
-            
-                Axios.post(`/api/messages`, data)
-            
-            socket.emit('sendMessage', message, () =>{
-                setMessage('')
-            })
-
+            Axios.post(`/api/messages`, data)
+            if(location.pathname.includes('messages')){
+                socket.emit('sendDM', message, () =>{
+                    setMessage('')
+                })
+            }else{
+                socket.emit('sendMessage', message, () =>{
+                    setMessage('')
+                })
+            }
         }
     }
 

@@ -29,6 +29,7 @@ import { findByLabelText } from '@testing-library/react'
 
 const Header = (props) => {
     let location = useLocation()
+    const {id} = useParams()
 
     const theme = useTheme()
 
@@ -38,20 +39,20 @@ const Header = (props) => {
 
     const [sideBarDrawerVisible, setSideBarDrawerVisible] = useState(false)
 
-    const {id} = useParams()
     let {server_id} = props.serverReducer.server
+    let {user_id} = props.userReducer.user
     const [popUp, togglePopUp] = useState(false)
     const [dmName, setDmName] = useState('')
 
-    // useEffect(()=>{
-    //     console.log('triggered...', props.match)
-    //     if(location.pathname.includes('messages')){
-    //         Axios.get(`/api/dmNames/${id}`).then(res =>{
-    //             console.log(res.data, " : dmName")
-    //             setDmNam(res.data.dmg_name)
-    //         })
-    //     }
-    // }, [location.pathname,id])
+    useEffect(()=>{
+        console.log('triggered...', props.match)
+        if(location.pathname.includes('messages')){
+            Axios.get(`/api/dmNames/${id}`).then(res =>{
+                console.log(res.data, " : dmName")
+                setDmName(res.data.dmg_name)
+            })
+        }
+    }, [location.pathname,id])
     const logout = () =>{
         auth.signOut().then(()=>{
             props.logoutUser()

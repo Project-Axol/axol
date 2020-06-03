@@ -29,5 +29,5 @@ const getRoom = (room) => {
     }
     return []
 }
-
-module.exports = { addUser, removeUser, getUser, getUsersInRoom, getRoom }
+const getUserIds = (room, userId) => users.find(user => user.room === room && user.userId === userId)
+module.exports = { addUser, removeUser, getUser, getUsersInRoom, getRoom, getUserIds }
