@@ -137,16 +137,16 @@ function Explore() {
         <section className='explore-results-container'>
           <div className='explore-results'>
           {!search ? (
-            <React.Fragment>
+            <React.Fragment className='populated-servers'>
               {mostUserServers}
             </React.Fragment>
           ) : (
             !searches[0] ? (
-              <React.Fragment>
+              <React.Fragment className='populated-servers'>
                 <CreateServer />
               </React.Fragment>
             ) : (
-            <React.Fragment>
+            <React.Fragment className='populated-servers'>
               {searchedServers}
             </React.Fragment>
             )
