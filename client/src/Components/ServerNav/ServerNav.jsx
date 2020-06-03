@@ -12,7 +12,8 @@ import findServerButton from '../../assets/icons8-compass-96.png'
 
 function ServerNav(props){
   const {servers} = props.serverReducer
-  // const {user} = props.userReducer
+  const {user} = props.userReducer
+  const {history, location} = props
 
   let mobile = useMedia('(max-width: 399px)')
   let tablet = useMedia('(max-width: 1025px)')
@@ -28,6 +29,13 @@ function ServerNav(props){
     })
   }, [])
 
+  const findLocaction = (server) => location.pathname === '/dashboard' ? (
+    props.selectServer(server)
+  ) : (
+    history.push('/dashboard'),
+    props.selectServer(server)
+  )
+
   const serverDisplay = servers.map(server => { 
     return (
       <section key={server.server_id} className='server-buttons'>
@@ -35,8 +43,7 @@ function ServerNav(props){
         key={server.server_id}
         className='srvr-bttn'
         onClick={() => {
-          props.selectServer(server)
-          props.history.push('/dashboard')
+          findLocaction(server)
         }}
         >
           <div className='server-icon-btn'>Hi</div>

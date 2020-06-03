@@ -65,7 +65,7 @@ function Explore() {
           ) : (
             !searches[0] ? (
               <React.Fragment>
-                <CreateServer />
+                <CreateServer serverName={search} />
               </React.Fragment>
             ) : (
             <React.Fragment>
@@ -104,7 +104,7 @@ function Explore() {
           ) : (
             !searches[0] ? (
               <React.Fragment>
-                <CreateServer />
+                <CreateServer serverName={search} />
               </React.Fragment>
             ) : (
             <React.Fragment>
@@ -142,8 +142,8 @@ function Explore() {
             </React.Fragment>
           ) : (
             !searches[0] ? (
-              <React.Fragment className='populated-servers'>
-                <CreateServer />
+              <React.Fragment>
+                <CreateServer serverName={search} />
               </React.Fragment>
             ) : (
             <React.Fragment className='populated-servers'>
