@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import useMedia from '../../hooks/useMedia'
+import { useTheme } from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import {logoutUser} from '../../ducks/userReducer'
 import {withRouter, useLocation, Link} from 'react-router-dom'
@@ -11,20 +12,31 @@ import logo from '../../assets/home-icon.svg'
 import addPeople from '../../assets/icons8-user-account-96.png'
 import hashtag from '../../assets/icons8-hashtag-100.png'
 
+import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import ServerNav from '../ServerNav/ServerNav'
+import ChannelNav from '../ChannelNav/ChannelNav'
 
-import './header.styels.scss'
+import './headerStyles.scss'
 import PopUp from '../Popup/PopUp.component'
 import Axios from 'axios'
+import { findByLabelText } from '@testing-library/react'
 
 const Header = (props) => {
     let location = useLocation()
+
+    const theme = useTheme()
+
     let mobile = useMedia('(max-width: 399px)')
-    let tablet = useMedia('(min-width: 400px)')
-    let desktop = useMedia('(min-width: 1025px)')
+    let tablet = useMedia('(max-width: 1025px)')
+    let desktop = useMedia('(max-width: 5000px)')
+
+    const [sideBarDrawerVisible, setSideBarDrawerVisible] = useState(false)
+
     let {server_id} = props.serverReducer.server
     const [popUp, togglePopUp] = useState(false)
     const [searchRes, setSearchRes]=useState([])
@@ -63,7 +75,11 @@ const Header = (props) => {
             <div className='header-container-mobile'>
                 <div className='header-mobile-left'>
                     <div className='header-mobile-menu-btn'>
-                        <img src={menuBtn} alt='menu-btn' />
+                            <img 
+                            src={menuBtn} 
+                            alt='menu-btn' 
+                            onClick={() => setSideBarDrawerVisible(true)}
+                            />
                     </div>
                     <div className='header-channel-mobile'>
                         <img src={hashtag} alt='hashtag' />
@@ -78,14 +94,53 @@ const Header = (props) => {
                         <Button size='small' onClick={logout}>Log Out</Button>
                     </div>
                 </div>
+                <SwipeableDrawer
+                children={theme.overrides.MuiDrawer}
+                anchor='left'
+                open={sideBarDrawerVisible}
+                onClose={() => setSideBarDrawerVisible(false)}
+                onOpen={() => setSideBarDrawerVisible(true)}
+                >
+                    <ServerNav />
+                    <ChannelNav />
+                </SwipeableDrawer>
             </div>
         )
     } else if(tablet){
         return(
             <div className='header-container-tablet'>
-                Tablet Header
+            <div className='header-mobile-left'>
+                <div className='header-mobile-menu-btn'>
+                        <img 
+                        src={menuBtn} 
+                        alt='menu-btn' 
+                        onClick={() => setSideBarDrawerVisible(true)}
+                        />
+                </div>
+                <div className='header-channel-mobile'>
+                    <img src={hashtag} alt='hashtag' />
+                    <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                </div>
             </div>
-            
+            <div className='header-mobile-right'>
+                <div className='header-search-mobile'>
+                    <img src={searchBtn} alt='search-btn' />
+                </div>
+                <div className='header-signout-mobile'>
+                    <Button size='small' onClick={logout}>Log Out</Button>
+                </div>
+            </div>
+            <SwipeableDrawer
+            children={theme.overrides.MuiDrawer}
+            anchor='left'
+            open={sideBarDrawerVisible}
+            onClose={() => setSideBarDrawerVisible(false)}
+            onOpen={() => setSideBarDrawerVisible(true)}
+            >
+                <ServerNav />
+                <ChannelNav />
+            </SwipeableDrawer>
+        </div>
         )
     } else if(desktop){
         return(
@@ -131,21 +186,21 @@ const Header = (props) => {
                         </div>
                         <div className='header-sign-out' >
                             <div className='header-search-friends'>
-                            <TextField
-                                id='outlined-search-header'
-                                size='small'
-                                placeholder='Search Users'
-                                type='search'
-                                variant='outlined'
-                                />
+                                <TextField
+                                    id='outlined-search-header'
+                                    size='small'
+                                    placeholder='Search Users...'
+                                    type='search'
+                                    // variant='outlined'
+                                    />
                             </div>
-                            <Button size='small' onClick={logout}>Log Out</Button>
+                            <Button size='small' id='log-out-button'onClick={logout}>Log Out</Button>
                         </div>
                     </React.Fragment> 
                     :
                     <React.Fragment>
                         <div className='header-server-name'>
-                            <TextField id='outlined-conversations-header' type='search' variant='outlined' size='small' placeholder='Conversations'
+                            <TextField id='outlined-conversations-header' type='search' size='small' placeholder='Conversations...'
                             />
                         </div>
                         <div className='header-server-channel'>
@@ -162,12 +217,12 @@ const Header = (props) => {
                                 <TextField
                                 id='outlined-search-header'
                                 size='small'
-                                placeholder='Search Users'
+                                placeholder='Search Users...'
                                 type='search'
-                                variant='outlined'
+                                // variant='outlined'
                                 />
                             </div>
-                            <Button onClick={logout}>Log Out</Button>
+                            <Button id='log-out-button' onClick={logout}>Log Out</Button>
                         </div>
                     </React.Fragment>
                     :

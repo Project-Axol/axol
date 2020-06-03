@@ -4,6 +4,8 @@ import Category from './Category'
 import {connect} from 'react-redux'
 import './ChannelNav.scss'
 
+import useMedia from '../../hooks/useMedia'
+
 import List from '@material-ui/core/List'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -11,6 +13,10 @@ import ListItemText from '@material-ui/core/ListItemText'
 function ChannelNav(props){
   let {server_id} = props.serverReducer.server
   const [categories, setCategories] = useState([])
+
+  let mobile = useMedia('(max-width: 399px)')
+  let tablet = useMedia('(min-width: 400px)')
+  let desktop = useMedia('(min-width: 1025px)')
 
   const initialLogin = () => {
     server_id = 0
@@ -40,12 +46,28 @@ function ChannelNav(props){
     )
   })
 
-  return (
-    <section className='channel-nav'>
-      {server_id > 0 ? categoryDisplay : <section>Friend list</section>}
-      <div className='chnl-usr'></div>
-    </section>
-  )
+  if(mobile){
+    return (
+      <section className='channel-nav-mobile'>
+        {server_id > 0 ? categoryDisplay : <section>Friend list</section>}
+        <div className='chnl-usr'></div>
+      </section>
+    )
+  } else if(tablet){
+    return (
+      <section className='channel-nav'>
+        {server_id > 0 ? categoryDisplay : <section>Friend list</section>}
+        <div className='chnl-usr'></div>
+      </section>
+    )
+  } else if(desktop){
+    return (
+      <section className='channel-nav'>
+        {server_id > 0 ? categoryDisplay : <section>Friend list</section>}
+        <div className='chnl-usr'></div>
+      </section>
+    )
+  }
 }
 
 const mapStateToProps = state => state

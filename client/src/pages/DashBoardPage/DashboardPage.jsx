@@ -15,8 +15,8 @@ const DashboardPage = (props) =>{
     let location = useLocation()
 
     let mobile = useMedia('(max-width: 399px)')
-    let tablet = useMedia('(min-width: 400px)')
-    let desktop = useMedia('(min-width: 1025px)')
+    let tablet = useMedia('(max-width: 1025px)')
+    let desktop = useMedia('(max-width: 5026px)')
 
 
     if(mobile){

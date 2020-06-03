@@ -6,11 +6,17 @@ import {withRouter, useParams} from 'react-router-dom'
 import Message from '../Message/Message.component'
 import TextField from '@material-ui/core/TextField'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import useMedia from '../../hooks/useMedia'
 
 import './messages.styles.scss'
 import Axios from 'axios'
 // let socket;
 const Messages = (props) =>{
+
+    let mobile = useMedia('(max-width: 399px)')
+    let tablet = useMedia('(max-width: 1025px)')
+    let desktop = useMedia('(max-width: 5026px)')
+
     const {id} = useParams()
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
@@ -71,24 +77,64 @@ const Messages = (props) =>{
     const groupMessages = messages.map((message, i) =>{
         return <Message message={message} key={i}/>
     })
-    return(
-        <div className='messages-container'>
-                <ScrollToBottom className='messages-messages'>
-                    {groupMessages}
-                </ScrollToBottom>
-            <div className='dashboard-message-input'>
-                    <TextField
-                    id='outlined-message-input'
-                    size='small'
-                    placeholder='Message...'
-                    fullWidth
-                    variant='outlined'
-                    value={message}
-                    onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}
-                    />
-                </div>
-        </div>
-    )
+    if(mobile){
+        return(
+            <div className='messages-container-mobile'>
+                    <ScrollToBottom className='messages-messages'>
+                        {groupMessages}
+                    </ScrollToBottom>
+                <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        value={message}
+                        onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}
+                        />
+                    </div>
+            </div>
+        )
+    } else if(tablet){
+        return(
+            <div className='messages-container-tablet'>
+                    <ScrollToBottom className='messages-messages'>
+                        {groupMessages}
+                    </ScrollToBottom>
+                <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        value={message}
+                        onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}
+                        />
+                    </div>
+            </div>
+        )
+    } else if(desktop) {
+        return(
+            <div className='messages-container-desktop'>
+                    <ScrollToBottom className='messages-messages'>
+                        {groupMessages}
+                    </ScrollToBottom>
+                <div className='dashboard-message-input'>
+                        <TextField
+                        id='outlined-message-input'
+                        size='small'
+                        placeholder='Message...'
+                        fullWidth
+                        variant='outlined'
+                        value={message}
+                        onChange={e=> setMessage(e.target.value)} onKeyPress={e => e.key === 'Enter' ? sendMessage(e): null}
+                        />
+                    </div>
+            </div>
+        )
+    }
 }
 
 const MapStateToComponent = state => {
