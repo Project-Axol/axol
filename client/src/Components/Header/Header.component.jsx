@@ -28,8 +28,14 @@ import SearchUser from '../SearchUser/Search.component'
 import Axios from 'axios'
 import { findByLabelText } from '@testing-library/react'
 
+import ServerSettings from './ServerSettings'
+
 const Header = (props) => {
     let location = useLocation()
+    const [displaySettings, setDisplaySettings] = useState(false)
+    const [serverSettings, setServerSettings] = useState(false)
+    const [addCat, setAddCat] = useState(false)
+    const [categoryName, setCategoryName] = useState('')
 
     const theme = useTheme()
 
@@ -161,6 +167,42 @@ const Header = (props) => {
                     <React.Fragment>
                         <div className='header-server-name'>
                             <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
+                            {props.history.location.pathname.includes('/dashboard') ? (
+                              <img
+                                src='https://image.flaticon.com/icons/svg/60/60473.svg'
+                                alt='settings'
+                                style={{height: '25px', width: '25px', marginLeft: '25px'}}
+                                onClick={() => {
+                                  setDisplaySettings(!displaySettings)
+                                }}
+                              />
+                              ) : (
+                                null
+                              )}
+                            {displaySettings ? (
+                              <section
+                                style={{width: '200px', backgroundColor: 'blue', position: 'absolute', top: '30px', zIndex: '1'}}
+                                onMouseLeave={() => setDisplaySettings(false)}
+                              >
+                                <list>
+                                  <p
+                                    onClick={() => {
+                                      setServerSettings(true)
+                                      setDisplaySettings(false)
+                                    }}
+                                    >Server Settings</p>
+                                  <p
+                                    onClick={() => {
+                                      setAddCat(true)
+                                      setDisplaySettings(false)
+                                    }}
+                                  >Create Category</p>
+                                  {/* <p>Invite Users</p> */}
+                                </list>
+                              </section>
+                            ) : (
+                              null
+                            )}
                         </div>
                         <div className='header-server-channel'>
                             <div className='header-server-channel-left'>
@@ -218,6 +260,38 @@ const Header = (props) => {
                         
                     </React.Fragment>
                 }
+              {serverSettings ? (
+                <ServerSettings
+                  server={props.serverReducer.server}
+                  setServerSettings={setServerSettings}
+                  userId={props.userReducer.user.user_id}/>
+              ) : null}
+              {addCat ? (
+                <div
+                  style={{height: '300px', width: '300px', backgroundColor: 'pink', position: 'absolute', top: '15%', left: '35%', zIndex: '1'}}
+                  onMouseLeave={() => {
+                    setCategoryName('')
+                    setAddCat(false)
+                  }}
+                >
+                  <input placeholder='Name' value={categoryName} onChange={event => setCategoryName(event.target.value)}/>
+                  <button
+                    onClick={() => {
+                      Axios.post(`/api/categories/${props.serverReducer.server.server_id}`, {categoryName})
+                      .then(() => {
+                        setAddCat(false)
+                      })
+                      .catch(err => console.log(err))
+                    }}
+                  >Create Category</button>
+                  <button
+                    onClick={() => {
+                      setCategoryName('')
+                      setAddCat(false)
+                    }}
+                  >Cancel</button>
+                </div>
+              ) : null}
             </div>
         )
 
