@@ -70,7 +70,7 @@ function ChannelNav(props){
   }
   const userConversations = conversations.map((convo, i)=>{
     return(
-      <Link to={`/messages/${convo.dmg_id}`}>
+      <Link key={i} to={`/messages/${convo.dmg_id}`}>
         <p>{convo.dmg_name}</p>
       </Link>
     )

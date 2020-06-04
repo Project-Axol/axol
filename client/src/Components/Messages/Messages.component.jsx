@@ -56,7 +56,7 @@ const Messages = (props) =>{
 
     useEffect(()=>{
         if(location.pathname.includes('messages')){
-            socket.on('dmMessage', message => {
+            socket.on('message', message => {
                setMessages(messages => [ ...messages, message ]);
             })
         }else{

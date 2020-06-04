@@ -52,9 +52,9 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="App">
-          {this.props.userReducer.isLoggedIn?
+          {/* {this.props.userReducer.isLoggedIn?
             <Header />
-           : null }
+           : null } */}
           <div className='main-content'>
             {router}
             {/* <div>

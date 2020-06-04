@@ -30,7 +30,7 @@ import { findByLabelText } from '@testing-library/react'
 const Header = (props) => {
     let location = useLocation()
     const {id} = useParams()
-
+    console.log("at the top: ", props.match, location)
     const theme = useTheme()
 
     let mobile = useMedia('(max-width: 400px)')

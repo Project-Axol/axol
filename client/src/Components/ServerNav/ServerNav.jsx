@@ -28,11 +28,11 @@ function ServerNav(props){
     .catch(err => {
       console.log(err)
     })
-    socket.on('dmMessage', message => {
-      console.log(message, " new message for")
-   })
   }, [])
-
+  
+  socket.on('dmMessage', message => {
+    console.log(message, " new message for")
+ })
   const findLocaction = (server) => location.pathname === '/dashboard' ? (
     props.selectServer(server)
   ) : (
