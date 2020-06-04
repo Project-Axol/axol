@@ -1,7 +1,7 @@
 @import '../../utils/styles.util.scss';
 
 .servers-mobile{
-    height: 100vh;
+    height: 100%;
     width: 15vw;
     background-color: $greyDark;
     padding: 10px 0;
@@ -70,7 +70,7 @@
 
 
 .servers-tablet{
-    height: 100vh;
+    height: 100%;
     width: 10vw;
     background-color: $greyDark;
     padding: 10px 0;

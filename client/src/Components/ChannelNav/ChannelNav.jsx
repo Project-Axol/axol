@@ -103,7 +103,7 @@ function ChannelNav(props){
     )
   } else if(tablet){
     return (
-      <section className='channel-nav'>
+      <section className='channel-nav-tablet'>
       {popUp &&
         <PopUp modalState={popUp}>
             <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
@@ -121,7 +121,7 @@ function ChannelNav(props){
     )
   } else if(desktop){
     return (
-      <section className='channel-nav'>
+      <section className='channel-nav-desktop'>
       {popUp &&
         <PopUp modalState={popUp}>
             <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
