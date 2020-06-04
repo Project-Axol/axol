@@ -20,7 +20,7 @@ function ServerNav(props){
   let desktop = useMedia('(max-width: 5000px)')
 
   useEffect(() => {
-    axios.get(`/api/servers/${21}`)
+    axios.get(`/api/servers/${user.user_id}`)
     .then(res => {
       props.userServers(res.data)
     })

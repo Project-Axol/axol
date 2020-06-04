@@ -22,6 +22,9 @@ function ChannelNav(props){
   const [categories, setCategories] = useState([])
   const [conversations, setConversations] = useState([])
   const [popUp, togglePopUp] = useState(false)
+  const [addChannel, setAddChannel] = useState(false)
+  const [categoryId, setCategoryId] = useState(null)
+  const [channelName, setChannelName] = useState('')
   
 
   let mobile = useMedia('(max-width: 399px)')
@@ -60,7 +63,6 @@ function ChannelNav(props){
     const chatWithName = user.user_name
     const myName = props.userReducer.user.user_name
     axios.post(`/api/conversations`, {myId, chatWith, chatWithName, myName}).then(res =>{
-      // console.log(res.)
       props.history.push(`/messages/${res.data.dmg_id}`)
     }).catch(()=>alert('cant start a chant'))
     axios.get(`/api/conversations/${user_id}`).then(res =>{
@@ -71,16 +73,27 @@ function ChannelNav(props){
   }
   const userConversations = conversations.map((convo, i)=>{
     return(
-      <Link to={`/messages/${convo.dmg_id}`}>
+      <Link key={i} to={`/messages/${convo.dmg_id}`}>
         <p>{convo.dmg_name}</p>
       </Link>
     )
   })
   const categoryDisplay = categories.map((category, i) => {
     return (
-      <List component='nav' key={category.category_id} >
-            <Category category={category} />
-      </List>
+      <React.Fragment>
+        <List component='nav' key={category.category_id} >
+          <Category category={category} />
+        </List>
+        <img
+          style={{height: '20px', width: '20px', marginBottom: '10px'}}
+          src='https://i.dlpng.com/static/png/6378688_preview.png'
+          alt='Add Channel'
+          onClick={() => {
+            setAddChannel(true)
+            setCategoryId(category.category_id)
+          }}
+        />
+      </React.Fragment>
     )
   })
 
@@ -142,6 +155,37 @@ function ChannelNav(props){
           server_id>0?
           categoryDisplay : <section>Friend list</section>}
       <div className='chnl-usr'></div>
+      {addChannel ? (
+        <section
+          style={{height: '300px', width: '300px', backgroundColor: 'pink', position: 'absolute', top: '15%', left: '35%', zIndex: '1'}}
+          onMouseLeave={() => {
+            setChannelName('')
+            setAddChannel(false)
+          }}
+        >
+          <input
+            placeholder='Name'
+            value={channelName}
+            onChange={event => setChannelName(event.target.value)}
+          />
+          <button
+            onClick={() => {
+              axios.post(`/api/channels/${categoryId}`, {channelName})
+              .then(() => {
+                setChannelName('')
+                setAddChannel(false)
+              })
+              .catch(err => console.log(err))
+            }}
+          >Add Channel</button>
+          <button
+            onClick={() => {
+              setChannelName('')
+              setAddChannel(false)
+            }}
+          >Cancel</button>
+        </section>
+      ) : null}
     </section>
     )
   }
