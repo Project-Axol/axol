@@ -95,7 +95,7 @@ const Header = (props) => {
                     <div className='header-search-mobile'>
                         <img src={searchBtn} alt='search-btn' />
                     </div>
-                    <div className='header-signout-mobile'>
+                    <div className='header-signout-mobile logout'>
                         <Button size='small' onClick={logout}>Log Out</Button>
                     </div>
                 </div>
@@ -131,7 +131,7 @@ const Header = (props) => {
                 <div className='header-search-mobile'>
                     <img src={searchBtn} alt='search-btn' />
                 </div>
-                <div className='header-signout-mobile'>
+                <div className='header-signout-mobile logout'>
                     <Button size='small' onClick={logout}>Log Out</Button>
                 </div>
             </div>
@@ -223,7 +223,9 @@ const Header = (props) => {
                                     // variant='outlined'
                                     />
                             </div>
-                            <Button size='small' id='log-out-button'onClick={logout}>Log Out</Button>
+                            <div className='logout'>
+                                <Button size='small' id='log-out-button'onClick={logout}>Log Out</Button>
+                            </div>
                         </div>
                     </React.Fragment> 
                     :
@@ -251,7 +253,9 @@ const Header = (props) => {
                                 // variant='outlined'
                                 />
                             </div>
-                            <Button id='log-out-button' onClick={logout}>Log Out</Button>
+                            <div className='logout'>
+                                <Button id='log-out-button' onClick={logout}>Log Out</Button>
+                            </div>
                         </div>
                     </React.Fragment>
                     :
