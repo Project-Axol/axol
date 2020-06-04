@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Card'
 import serverImg from '../../assets/blue-circle-icon.svg'
 import Grid from '@material-ui/core/Grid'
 
+import BlueAxolotl from '../../assets/blue-circle-icon.svg'
+
 function Searched(props) {
   const {server_name, server_img} = props.search
 
@@ -23,7 +25,7 @@ function Searched(props) {
     >
       <Grid container spacing={2} justify='center' alignItems='center' className='tile-grid-container'>
         <Grid item xs={12} className='grid-server-img'>
-          <img src={server_img} alt='server-img'/>
+          <img src={BlueAxolotl} alt='server-img'/>
         </Grid>
         <Grid item xs={12} className='grid-server-name'>
           {server_name}
