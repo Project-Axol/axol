@@ -16,6 +16,7 @@ const channelCtrl = require('./controllers/channelController')
 const messagesCtrl = require('./controllers/messagesController')
 const socketCtrl = require('./controllers/socketController')
 const dmCtrl = require('./controllers/directMessagesController')
+const settingsCtrl = require('./controllers/settingsController')
 
 const { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
@@ -52,6 +53,10 @@ app.get(`/api/conversations/:user_id`, dmCtrl.getConversations)
 app.get(`/api/dmMessages/:dmId`, dmCtrl.getDMmessages)
 app.get(`/api/dmNames/:dmId`, dmCtrl.getDMName)
 
+app.get(`/api/server/:serverId`, settingsCtrl.getServerSettings)
+app.post(`/api/server/:serverId`, settingsCtrl.updateServerSettings)
+app.post('/api/admin', settingsCtrl.checkAdmin)
+app.delete('/api/server/:serverId', settingsCtrl.deleteServer)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../client/build`));
