@@ -11,6 +11,7 @@ import useMedia from '../../hooks/useMedia'
 import List from '@material-ui/core/List'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import Button from '@material-ui/core/Button'
 
 import './ChannelNav.scss'
 
@@ -106,7 +107,9 @@ function ChannelNav(props){
       }
       {location.pathname.includes('messages') ?
           <React.Fragment>
-            <p onClick={()=>togglePopUp(!popUp)}>Start a new conversation</p>
+            <div className='new-conversation-button'>
+              <Button color='primary' size='small' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
+            </div>
             {userConversations}
           </React.Fragment>:
           server_id>0?
@@ -116,7 +119,7 @@ function ChannelNav(props){
     )
   } else if(tablet){
     return (
-      <section className='channel-nav'>
+      <section className='channel-nav-tablet'>
       {popUp &&
         <PopUp modalState={popUp}>
             <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
@@ -124,7 +127,9 @@ function ChannelNav(props){
       }
       {location.pathname.includes('messages') ?
           <React.Fragment>
-            <p onClick={()=>togglePopUp(!popUp)}>Start a new conversation</p>
+            <div className='new-conversation-button'>
+              <Button color='primary' size='small' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
+            </div>
             {userConversations}
           </React.Fragment>:
           server_id>0?
@@ -134,7 +139,7 @@ function ChannelNav(props){
     )
   } else if(desktop){
     return (
-      <section className='channel-nav'>
+      <section className='channel-nav-desktop'>
       {popUp &&
         <PopUp modalState={popUp}>
             <SearchUser togglePopUp={togglePopUp} popUp={popUp} handleAddUser={handleStartDm}/>
@@ -142,7 +147,9 @@ function ChannelNav(props){
       }
       {location.pathname.includes('messages') ?
           <React.Fragment>
-            <p onClick={()=>togglePopUp(!popUp)}>Start a new conversation</p>
+            <div className='new-conversation-button'>
+              <Button color='primary' size='small' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
+            </div>
             {userConversations}
           </React.Fragment>:
           server_id>0?
