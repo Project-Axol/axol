@@ -8,11 +8,16 @@ import SearchUser from '../SearchUser/Search.component'
 
 import useMedia from '../../hooks/useMedia'
 
+
+import Card from '@material-ui/core/Card'
+import TextField from '@material-ui/core/TextField'
 import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button'
 import Plus from '../../assets/icons8-plus-math-96.png'
+import Typography from '@material-ui/core/Typography'
 
 import './ChannelNav.scss'
 import { IconButton } from '@material-ui/core'
@@ -75,8 +80,10 @@ function ChannelNav(props){
   }
   const userConversations = conversations.map((convo, i)=>{
     return(
-      <Link key={i} to={`/messages/${convo.dmg_id}`}>
-        <p>{convo.dmg_name}</p>
+      <Link className='conversation-link' key={i} to={`/messages/${convo.dmg_id}`}>
+        <ListItem button className='conversation'>
+          <ListItemText primary={convo.dmg_name} />
+        </ListItem>
       </Link>
     )
   })
@@ -115,7 +122,9 @@ function ChannelNav(props){
             <div className='new-conversation-button'>
               <Button color='primary' size='small' className='conversation-button' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
             </div>
-            {userConversations}
+            <List>
+              {userConversations}
+            </List>
           </React.Fragment>:
           server_id>0?
           categoryDisplay : <section>Friend list</section>}
@@ -158,22 +167,26 @@ function ChannelNav(props){
             {userConversations}
           </React.Fragment>:
           server_id>0?
-          categoryDisplay : <section>Friend list</section>}
+          categoryDisplay : <Typography variant='h6' color='textSecondary'>Friends List</Typography>}
       <div className='chnl-usr'></div>
       {addChannel ? (
-        <section
-          style={{height: '300px', width: '300px', backgroundColor: 'pink', position: 'absolute', top: '15%', left: '35%', zIndex: '1'}}
+        <Card
+          style={{height: '200px', width: '500px', position: 'absolute', top: '15%', left: '35%', zIndex: '1', display: 'flex', flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}
           onMouseLeave={() => {
             setChannelName('')
             setAddChannel(false)
           }}
         >
-          <input
-            placeholder='Name'
+          <TextField
+            label='Name'
             value={channelName}
             onChange={event => setChannelName(event.target.value)}
+            style={{margin: '15px'}}
           />
-          <button
+          <Button
+          variant='contained'
+          color='primary'
+          style={{margin: '5px'}}
             onClick={() => {
               axios.post(`/api/channels/${categoryId}`, {channelName})
               .then(() => {
@@ -182,14 +195,16 @@ function ChannelNav(props){
               })
               .catch(err => console.log(err))
             }}
-          >Add Channel</button>
-          <button
+          >Add Channel</Button>
+          <Button
+          variant='outlined'
+          color='primary'
             onClick={() => {
               setChannelName('')
               setAddChannel(false)
             }}
-          >Cancel</button>
-        </section>
+          >Cancel</Button>
+        </Card>
       ) : null}
     </section>
     )

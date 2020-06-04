@@ -42,10 +42,11 @@ const UserStatus = (props) =>{
     return(
         <div className='dashboard-right'>
             {util.isObjectEmpty(server)?
-            <Typography className='empty-state' variant='h6' color='textPrimary'>
+            <Typography className='empty-state' variant='h6' color='textSecondary'>
                 No Server Selected
             </Typography>:
                 <React.Fragment className='not-empty'>
+                    <Typography variant='h6' color='textSecondary'>Online Users</Typography>
                     {channels}
                 </React.Fragment>
             }
