@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import ServerNav from '../ServerNav/ServerNav'
 import ChannelNav from '../ChannelNav/ChannelNav'
+import Sidebar from '../Sidebar/Sidebar'
 
 import './headerStyles.scss'
 import PopUp from '../Popup/PopUp.component'
@@ -94,14 +95,14 @@ const Header = (props) => {
                     </div>
                 </div>
                 <SwipeableDrawer
+                className='.swipeable-drawer'
                 children={theme.overrides.MuiDrawer}
                 anchor='left'
                 open={sideBarDrawerVisible}
                 onClose={() => setSideBarDrawerVisible(false)}
                 onOpen={() => setSideBarDrawerVisible(true)}
                 >
-                    <ServerNav />
-                    <ChannelNav />
+                    <Sidebar />
                 </SwipeableDrawer>
             </div>
         )
@@ -136,8 +137,7 @@ const Header = (props) => {
             onClose={() => setSideBarDrawerVisible(false)}
             onOpen={() => setSideBarDrawerVisible(true)}
             >
-                <ServerNav />
-                <ChannelNav />
+                <Sidebar />
             </SwipeableDrawer>
         </div>
         )
