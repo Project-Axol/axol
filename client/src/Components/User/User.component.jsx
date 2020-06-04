@@ -3,6 +3,8 @@ import util from '../../utils/util'
 import {useParams} from 'react-router-dom'
 import socket from '../../Sockets'
 
+import Typography from '@material-ui/core/Typography'
+
 import './user.styles.scss'
 
 const User = (props) => {
@@ -26,11 +28,11 @@ const User = (props) => {
     
     const users = roomInfo.map(user => {
         return (
-            <div>
+            <div className='single-user'>
                 <div className='message-user-img'>
-                    <div className='user-img'>
+                    {/* <div className='user-img'> */}
                         <img src={user.profilePic} alt="profile"/>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <div className='user-name'>
                     <p>{user.username}</p>
@@ -39,7 +41,7 @@ const User = (props) => {
         )
     })
     return (
-        <div className='single-user-container'>
+        <div className='mapped-users-container'>
             {users}
         </div>
     )

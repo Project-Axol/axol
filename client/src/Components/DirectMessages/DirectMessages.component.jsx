@@ -43,7 +43,7 @@ const DirectMessages = (props) =>{
         )
     } else if (desktop) {
         return (
-            <div className='dm-container-mobile'>
+            <div className='dm-container-desktop'>
                 {!id?
                 <div className='dm-no-messages'>
                     <img src={pinkCircleIcon} alt="noMessages"/>
