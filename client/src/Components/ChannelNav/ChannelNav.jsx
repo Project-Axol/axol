@@ -95,7 +95,7 @@ function ChannelNav(props){
       {location.pathname.includes('messages') ?
           <React.Fragment>
             <div className='new-conversation-button'>
-              <Button color='primary' size='small' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
+              <Button color='primary' size='small' className='conversation-button' variant='contained' onClick={()=>togglePopUp(!popUp)}>New Conversation</Button>
             </div>
             {userConversations}
           </React.Fragment>:
