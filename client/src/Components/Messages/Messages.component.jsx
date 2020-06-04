@@ -36,14 +36,13 @@ const Messages = (props) =>{
             })
         }
 
-
         let room = `${props.dashType}-${id}`
         // util.socket = io(Endpoint)//, {transport : ['websocket'] })
         socket.on('connect', function() {
             // Connected, let's sign-up for to receive messages for this room
             socket.emit('join-room', {username: user.user_name, profilePic:user.profile_pic,room:room, userId:user.user_id});
          });
-        
+         socket.emit('join-room', {username: user.user_name, profilePic:user.profile_pic,room:room, userId:user.user_id});
         //socket closing when user leaves or component unmounts 
         return () =>{
             // console.log('component unmount')
