@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import logo from '../../assets/home-icon.svg'
 import findServerButton from '../../assets/icons8-compass-96.png'
+import BlueAxolotl from '../../assets/blue-circle-icon.svg'
 
 function ServerNav(props){
   const {servers} = props.serverReducer
@@ -46,7 +47,9 @@ function ServerNav(props){
           findLocaction(server)
         }}
         >
-          <div className='server-icon-btn'>Hi</div>
+          <div className='server-icon-btn'>
+            <img src={BlueAxolotl} alt='server-icon' />
+          </div>
         </div>
       </section>
     )
