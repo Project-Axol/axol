@@ -12,8 +12,10 @@ import List from '@material-ui/core/List'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button'
+import Plus from '../../assets/icons8-plus-math-96.png'
 
 import './ChannelNav.scss'
+import { IconButton } from '@material-ui/core'
 
 function ChannelNav(props){
   let location = useLocation()
@@ -84,15 +86,18 @@ function ChannelNav(props){
         <List component='nav' key={category.category_id} >
           <Category category={category} />
         </List>
-        <img
-          style={{height: '20px', width: '20px', marginBottom: '10px'}}
-          src='https://i.dlpng.com/static/png/6378688_preview.png'
-          alt='Add Channel'
-          onClick={() => {
-            setAddChannel(true)
-            setCategoryId(category.category_id)
-          }}
-        />
+        <IconButton 
+        className='plus-button' 
+        onClick={() => {
+          setAddChannel(true)
+          setCategoryId(category.category_id)
+        }}>
+          <img
+            style={{height: '10px', width: '10px'}}
+            src={Plus}
+            alt='Add Channel'
+          />
+        </IconButton>
       </React.Fragment>
     )
   })

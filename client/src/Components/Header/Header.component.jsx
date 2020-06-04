@@ -11,6 +11,7 @@ import searchBtn from '../../assets/icons8-search-240.png'
 import logo from '../../assets/home-icon.svg'
 import addPeople from '../../assets/icons8-user-account-96.png'
 import hashtag from '../../assets/icons8-hashtag-100.png'
+import SettingsIcon from '../../assets/icons8-settings-192.png'
 
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -21,6 +22,11 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import ServerNav from '../ServerNav/ServerNav'
 import ChannelNav from '../ChannelNav/ChannelNav'
 import Sidebar from '../Sidebar/Sidebar'
+import Card from '@material-ui/core/Card'
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 
 import './headerStyles.scss'
 import PopUp from '../Popup/PopUp.component'
@@ -29,6 +35,7 @@ import Axios from 'axios'
 import { findByLabelText } from '@testing-library/react'
 
 import ServerSettings from './ServerSettings'
+import { ListItem } from '@material-ui/core'
 
 const Header = (props) => {
     let location = useLocation()
@@ -88,7 +95,7 @@ const Header = (props) => {
                     </div>
                     <div className='header-channel-mobile'>
                         <img src={hashtag} alt='hashtag' />
-                        <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                        <Typography className='header-channel-name' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                     </div>
                 </div>
                 <div className='header-mobile-right'>
@@ -124,7 +131,7 @@ const Header = (props) => {
                 </div>
                 <div className='header-channel-mobile'>
                     <img src={hashtag} alt='hashtag' />
-                    <Typography className='header-channel-name' variant='h6'>Da Boiz</Typography>
+                    <Typography className='header-channel-name' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                 </div>
             </div>
             <div className='header-mobile-right'>
@@ -168,38 +175,39 @@ const Header = (props) => {
                         <div className='header-server-name'>
                             <Typography className='server-name-typography' variant='h6'>{props.serverReducer.server.server_name}</Typography>
                             {props.history.location.pathname.includes('/dashboard') ? (
-                              <img
-                                src='https://image.flaticon.com/icons/svg/60/60473.svg'
-                                alt='settings'
-                                style={{height: '25px', width: '25px', marginLeft: '25px'}}
-                                onClick={() => {
-                                  setDisplaySettings(!displaySettings)
-                                }}
-                              />
+                              <IconButton className='settings-button'
+                              onClick={() => {
+                                setDisplaySettings(!displaySettings)
+                              }}
+                              >
+                                <img src={SettingsIcon} alt='settings'/>
+                              </IconButton>
                               ) : (
                                 null
                               )}
                             {displaySettings ? (
-                              <section
-                                style={{width: '200px', backgroundColor: 'blue', position: 'absolute', top: '30px', zIndex: '1'}}
+                              <Card
+                                style={{width: '180px', height: '150px', position: 'absolute', top: '30px', zIndex: '1'}}
                                 onMouseLeave={() => setDisplaySettings(false)}
                               >
-                                <list>
-                                  <p
-                                    onClick={() => {
-                                      setServerSettings(true)
-                                      setDisplaySettings(false)
-                                    }}
-                                    >Server Settings</p>
-                                  <p
-                                    onClick={() => {
-                                      setAddCat(true)
-                                      setDisplaySettings(false)
-                                    }}
-                                  >Create Category</p>
+                                <List>
+                                  <ListItem
+                                  button
+                                  onClick={() => {
+                                    setServerSettings(true)
+                                    setDisplaySettings(false)
+                                  }}
+                                  >Server Settings</ListItem>
+                                  <ListItem
+                                  button
+                                  onClick={() => {
+                                    setAddCat(true)
+                                    setDisplaySettings(false)
+                                  }}
+                                  >Create Category</ListItem>
                                   {/* <p>Invite Users</p> */}
-                                </list>
-                              </section>
+                                </List>
+                              </Card>
                             ) : (
                               null
                             )}
@@ -267,30 +275,32 @@ const Header = (props) => {
                   userId={props.userReducer.user.user_id}/>
               ) : null}
               {addCat ? (
-                <div
-                  style={{height: '300px', width: '300px', backgroundColor: 'pink', position: 'absolute', top: '15%', left: '35%', zIndex: '1'}}
-                  onMouseLeave={() => {
-                    setCategoryName('')
-                    setAddCat(false)
-                  }}
+                <Card
+                  style={{height: '300px', width: '300px', position: 'absolute', top: '15%', left: '35%', zIndex: '1', display: 'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center'}}
                 >
-                  <input placeholder='Name' value={categoryName} onChange={event => setCategoryName(event.target.value)}/>
-                  <button
+                  <TextField label='Name' value={categoryName} onChange={event => setCategoryName(event.target.value)}/> <br /> <br />
+                  <div className='categories-buttons'>
+                    <Button
+                    variant='contained'
+                    color='primary'
                     onClick={() => {
-                      Axios.post(`/api/categories/${props.serverReducer.server.server_id}`, {categoryName})
-                      .then(() => {
+                        Axios.post(`/api/categories/${props.serverReducer.server.server_id}`, {categoryName})
+                        .then(() => {
+                            setAddCat(false)
+                        })
+                        .catch(err => console.log(err))
+                        }}
+                    >Create Category</Button>
+                    <Button
+                    variant='outlined'
+                    color='primary'
+                    onClick={() => {
+                        setCategoryName('')
                         setAddCat(false)
-                      })
-                      .catch(err => console.log(err))
-                    }}
-                  >Create Category</button>
-                  <button
-                    onClick={() => {
-                      setCategoryName('')
-                      setAddCat(false)
-                    }}
-                  >Cancel</button>
-                </div>
+                        }}
+                    >Cancel</Button>
+                  </div>
+                </Card>
               ) : null}
             </div>
         )
