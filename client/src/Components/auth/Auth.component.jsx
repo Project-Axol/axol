@@ -89,7 +89,7 @@ class Auth extends Component{
                                 Please sign in
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield email'>
                             <TextField
                                 id='userName'
                                 label='Email'
@@ -99,7 +99,7 @@ class Auth extends Component{
                                 variant='outlined'
                                 onChange={e=>this.handleOnchange(e)}/>
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield password'>
                             <TextField
                             id='password'
                             label='Password'
@@ -151,7 +151,7 @@ class Auth extends Component{
                                 Please create an account
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield userName'>
                             <TextField 
                             name='userName' 
                             label='Username'
@@ -161,7 +161,7 @@ class Auth extends Component{
                             onChange={e=>this.handleOnchange(e)}/>
 
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield email'>
                             <TextField
                             name='email'
                             type='email'
@@ -171,7 +171,7 @@ class Auth extends Component{
                             onChange={e => this.handleOnchange(e)}
                             />
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield password'>
                             <TextField 
                             name='password'
                             type='password'
@@ -181,7 +181,7 @@ class Auth extends Component{
                             onChange={e => this.handleOnchange(e)}
                             />
                         </Grid>
-                        <Grid item xs={12} className='grid-textfield'>
+                        <Grid item xs={12} className='grid-textfield cPassword'>
                             <TextField 
                             name='confirmPassword'
                             type='password'
