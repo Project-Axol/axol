@@ -14,13 +14,13 @@
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  .channel-nav-hashtag {
-    height: 20px;
-    width: auto;
-    margin: 5px;
-  }
   .channel-button {
     width: 100%;
+    .channel-nav-hashtag {
+      height: 20px;
+      width: 20px;
+      margin: 5px;
+    }
   }
   .channel-name {
     color: white;
@@ -58,13 +58,13 @@
       font-size: xx-small;
     }
   }
-  .channel-nav-hashtag {
-    height: 20px;
-    width: auto;
-    margin: 5px;
-  }
   .channel-button {
     width: 100%;
+    .channel-nav-hashtag {
+      height: 20px;
+      width: 20px;
+      margin: 5px;
+    }
   }
   .channel-name {
     color: white;
@@ -123,5 +123,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.channel-button {
+  width: 15vw;
+  .channel-nav-hashtag {
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+  }
+  .channel-name {
+    color: white;
   }
 }

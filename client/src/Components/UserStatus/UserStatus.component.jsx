@@ -6,6 +6,11 @@ import Channel from '../ChannelNav/Channel'
 import User from '../User/User.component'
 import io from 'socket.io-client'
 
+import Typography from '@material-ui/core/Typography'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+
 import './userStatus.styles.scss'
 
 let socket;
@@ -30,17 +35,17 @@ const UserStatus = (props) =>{
 
     const channels = serverChannels.map((channel,i) => {
         return  <React.Fragment>
-                    <Channel key={i} channelName={channel.channel_name}/>
-                    <User key={channel.channel_id} chId={channel.channel_id}/>
+                    <Channel id='channel-user-status' key={i} channelName={channel.channel_name}/>
+                    <User id='user-status-channel' key={channel.channel_id} chId={channel.channel_id}/>
                 </React.Fragment>
     }) 
     return(
-        <div>
+        <div className='dashboard-right'>
             {util.isObjectEmpty(server)?
-            <p>
-                No server selected
-            </p>:
-                <React.Fragment>
+            <Typography className='empty-state' variant='h6' color='textPrimary'>
+                No Server Selected
+            </Typography>:
+                <React.Fragment className='not-empty'>
                     {channels}
                 </React.Fragment>
             }
