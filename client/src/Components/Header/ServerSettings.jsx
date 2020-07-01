@@ -69,6 +69,7 @@ function ServerSettings(props) {
           <Button variant='outlined' color='primary'>Leave Server</Button>
         )}
           <img
+            className='exit-server-settings'
             style={{height: '20px', width: '20px', position: 'absolute', top: '10px', right: '10px'}}
             src={CloseIcon}
             alt='exit'

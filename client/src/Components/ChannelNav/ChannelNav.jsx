@@ -94,7 +94,8 @@ function ChannelNav(props){
           <Category category={category} />
         </List>
         <IconButton 
-        className='plus-button' 
+        className='plus-button'
+        className={`plus-button-${category.category_name}`} 
         onClick={() => {
           setAddChannel(true)
           setCategoryId(category.category_id)
@@ -178,12 +179,14 @@ function ChannelNav(props){
           }}
         >
           <TextField
+            className='new-channel-input'
             label='Name'
             value={channelName}
             onChange={event => setChannelName(event.target.value)}
             style={{margin: '15px'}}
           />
           <Button
+          className='new-channel-button'
           variant='contained'
           color='primary'
           style={{margin: '5px'}}

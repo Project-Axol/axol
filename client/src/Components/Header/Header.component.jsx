@@ -193,12 +193,14 @@ const Header = (props) => {
                                 <List>
                                   <ListItem
                                   button
+                                  className='server-settings-button'
                                   onClick={() => {
                                     setServerSettings(true)
                                     setDisplaySettings(false)
                                   }}
                                   >Server Settings</ListItem>
                                   <ListItem
+                                  className='category-button'
                                   button
                                   onClick={() => {
                                     setAddCat(true)
@@ -282,9 +284,10 @@ const Header = (props) => {
                 <Card
                   style={{height: '300px', width: '300px', position: 'absolute', top: '15%', left: '35%', zIndex: '1', display: 'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center'}}
                 >
-                  <TextField label='Name' value={categoryName} onChange={event => setCategoryName(event.target.value)}/> <br /> <br />
+                  <TextField className='new-category-name' label='Name' value={categoryName} onChange={event => setCategoryName(event.target.value)}/> <br /> <br />
                   <div className='categories-buttons'>
                     <Button
+                    className='new-category-button'
                     variant='contained'
                     color='primary'
                     onClick={() => {
@@ -296,6 +299,7 @@ const Header = (props) => {
                         }}
                     >Create Category</Button>
                     <Button
+                    className='new-cat-cancel'
                     variant='outlined'
                     color='primary'
                     onClick={() => {

@@ -20,7 +20,7 @@ function ServerNav(props){
   let desktop = useMedia('(max-width: 5000px)')
 
   useEffect(() => {
-    axios.get(`/api/servers/${user.user_id}`)
+    axios.get(`/api/servers/${21}`)
     .then(res => {
       props.userServers(res.data)
     })
@@ -40,8 +40,9 @@ function ServerNav(props){
     return (
       <section key={server.server_id} className='server-buttons'>
         <div
+        name={server.server_name} 
         key={server.server_id}
-        className='srvr-bttn'
+        className={`srvr-bttn ${server.server_name}`}
         onClick={() => {
           findLocaction(server)
         }}
